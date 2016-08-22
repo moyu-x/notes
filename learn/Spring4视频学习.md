@@ -261,5 +261,61 @@ AspectJ 支持 5 种类型的通知注解:
 
 ##  基于XML配置的方式
 
+```xml
+<aop:config>
+    <aop:pointcut id="test" expression="top.wangjinpeng.chapter2.impl.LoggingAsAspect.cutTest()"/>
+    <aop:aspect ref="loggingAsAspect">
+        <aop:before method="beforeMethod" pointcut="top.wangjinpeng.chapter2.impl.LoggingAsAspect.cutTest()"/>
+        <aop:before method="afterMethod" pointcut="top.wangjinpeng.chapter2.impl.LoggingAsAspect.cutTest()"/>
+    </aop:aspect>
+</aop:config>
+```
 
+除了使用 AspectJ 注解声明切面, Spring 也支持在 Bean 配置文件中声明切面. 这种声明是通过 aop schema 中的 XML 元素完成的.
+正常情况下, 基于注解的声明要优先于基于 XML 的声明. 通过 AspectJ 注解, 切面可以与 AspectJ 兼容, 而基于 XML 的配置则是 Spring 专有的. 由于 AspectJ 得到越来越多的 AOP 框架支持, 所以以注解风格编写的切面将会有更多重用的机会.
 
+当使用 XML 声明切面时, 需要在 <beans> 根元素中导入 aop Schema
+在 Bean 配置文件中, 所有的 Spring AOP 配置都必须定义在 <aop:config> 元素内部. 对于每个切面而言, 都要创建一个 <aop:aspect> 元素来为具体的切面实现引用后端 Bean 实例. 
+切面 Bean 必须有一个标示符, 供 <aop:aspect> 元素引用
+
+# spring jdbc
+
+##  简化 JDBC 模板查询
+
+每次使用都创建一个 JdbcTemplate 的新实例, 这种做法效率很低下.
+
+JdbcTemplate 类被设计成为线程安全的, 所以可以再 IOC 容器中声明它的单个实例, 并将这个实例注入到所有的 DAO 实例中.
+
+JdbcTemplate 也利用了 Java 1.5 的特定(自动装箱, 泛型, 可变长度等)来简化开发
+
+Spring JDBC 框架还提供了一个 JdbcDaoSupport 类来简化 DAO 实现. 该类声明了 jdbcTemplate 属性, 它可以从 IOC 容器中注入, 或者自动从数据源中创建.
+
+## 基本使用
+
+1. 配置DataSource
+2. 配置JdbcTemplate
+3. 使用
+
+其不支持级联属性，JdbcTemplate到底是一个JDBC的小工具，而不是ORM框架
+
+## 在 JDBC 模板中使用具名参数
+
+在经典的 JDBC 用法中, SQL 参数是用占位符 ? 表示,并且受到位置的限制. 定位参数的问题在于, 一旦参数的顺序发生变化, 就必须改变参数绑定. 
+
+在 Spring JDBC 框架中, 绑定 SQL 参数的另一种选择是使用具名参数(named parameter). 
+
+具名参数: SQL 按名称(以冒号开头)而不是按位置进行指定. 具名参数更易于维护, 也提升了可读性. 具名参数由框架类在运行时用占位符取代
+
+具名参数只在 NamedParameterJdbcTemplate 中得到支持 
+
+在 SQL 语句中使用具名参数时, 可以在一个 Map 中提供参数值, 参数名为键
+也可以使用 SqlParameterSource 参数
+
+批量更新时可以提供 Map 或 SqlParameterSource 的数组
+
+配置NamedParameterJdbcTemplte，该对象可以使用具名参数，其没有无参数的构造器，所以必须为其构造器指定参数
+
+使用具名参数时，可以使用update（String sql，SqlParameterSource paramSource)方法进行更新操作
+
+1. SQL语句中的参数名和类的属性一致
+2. 使用SQLParameterSource的BeanPropertySqlParameterSource实现类作为参数
