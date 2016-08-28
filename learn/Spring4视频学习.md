@@ -319,3 +319,106 @@ Spring JDBC 框架还提供了一个 JdbcDaoSupport 类来简化 DAO 实现. 该
 
 1. SQL语句中的参数名和类的属性一致
 2. 使用SQLParameterSource的BeanPropertySqlParameterSource实现类作为参数
+
+# 事务管理
+
+## 简介
+
+事务管理是企业级应用程序开发中必不可少的技术,  用来确保数据的完整性和一致性. 
+
+事务就是一系列的动作, 它们被当做一个单独的工作单元. 这些动作要么全部完成, 要么全部不起作用
+
+事务的四个关键属性(ACID)
+
+* 原子性(atomicity): 事务是一个原子操作, 由一系列动作组成. 事务的原子性确保动作要么全部完成要么完全不起作用.
+* 一致性(consistency): 一旦所有事务动作完成, 事务就被提交. 数据和资源就处于一种满足业务规则的一致性状态中.
+* 隔离性(isolation): 可能有许多事务会同时处理相同的数据, 因此每个事物都应该与其他事务隔离开来, 防止数据损坏.
+* 持久性(durability): 一旦事务完成, 无论发生什么系统错误, 它的结果都不应该受到影响. 通常情况下, 事务的结果被写到持久化存储器中.
+
+## spring事务管理
+
+作为企业级应用程序框架, Spring 在不同的事务管理 API 之上定义了一个抽象层. 而应用程序开发人员不必了解底层的事务管理 API, 就可以使用 Spring 的事务管理机制.
+
+Spring 既支持编程式事务管理, 也支持声明式的事务管理. 
+
+编程式事务管理: 将事务管理代码嵌入到业务方法中来控制事务的提交和回滚. 在编程式管理事务时, 必须在每个事务操作中包含额外的事务管理代码. 
+
+声明式事务管理: 大多数情况下比编程式事务管理更好用. 它将事务管理代码从业务方法中分离出来, 以声明的方式来实现事务管理. 事务管理作为一种横切关注点, 可以通过 AOP 方法模块化. Spring 通过 Spring AOP 框架支持声明式事务管理.
+
+Spring 从不同的事务管理 API 中抽象了一整套的事务机制. 开发人员不必了解底层的事务 API, 就可以利用这些事务机制. 有了这些事务机制, 事务管理代码就能独立于特定的事务技术了.
+Spring 的核心事务管理抽象是它为事务管理封装了一组独立于技术的方法. 无论使用 Spring 的哪种事务管理策略(编程式或声明式), 事务管理器都是必须的.
+
+## 用事务通知声明式地管理事务
+
+事务管理是一种横切关注点
+
+为了在 Spring 2.x 中启用声明式事务管理, 可以通过 tx Schema 中定义的` <tx:advice> 元`素声明事务通知, 为此必须事先将这个 Schema 定义添加到` <beans> `根元素中去.
+
+声明了事务通知后, 就需要将它与切入点关联起来. 由于事务通知是在` <aop:config>` 元素外部声明的, 所以它无法直接与切入点产生关联. 所以必须在` <aop:config>` 元素中声明一个增强器通知与切入点关联起来.
+
+由于 Spring AOP 是基于代理的方法, 所以只能增强公共方法. 因此, 只有公有方法才能通过 Spring AOP 进行事务管理.
+
+```xml
+<!--启用注解的配置-->
+<tx:annotation-driven transaction-manager="transactionManager"/>
+<!--事务管理的配置-->
+<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <property name="dataSource" ref="dataSource"/>
+</bean>
+```
+
+## 用 @Transactional 注解声明式地管理事务
+
+除了在带有切入点, 通知和增强器的 Bean 配置文件中声明事务外, Spring 还允许简单地用` @Transactional `注解来标注事务方法. 
+
+为了将方法定义为支持事务处理的, 可以为方法添加` @Transactional` 注解. 根据 Spring AOP 基于代理机制, 只能标注公有方法.
+
+可以在方法或者类级别上添加` @Transactional `注解. 当把这个注解应用到类上时, 这个类中的所有公共方法都会被定义成支持事务处理的. 
+
+在 Bean 配置文件中只需要启用 `<tx:annotation-driven> `元素, 并为之指定事务管理器就可以了. 
+
+如果事务处理器的名称是 transactionManager, 就可以在`<tx:annotation-driven> `元素中省略 transaction-manager 属性. 这个元素会自动检测该名称的事务处理器.
+
+当事务方法被另一个事务方法调用时, 必须指定事务应该如何传播. 例如: 方法可能继续在现有事务中运行, 也可能开启一个新事务, 并在自己的事务中运行.
+
+使用Propagation指定事务的传播行为，及当前的事务方法被另外一个事务方法调用时，如何使用事务。默认取值为REQUIRED，即调用方法的事务。默认情况下spring 的声明式事务对所有的运行时异常进行回滚，也可以对事务的属性进行设置
+
+默认情况下只有未检查异常(RuntimeException和Error类型的异常)会导致事务回滚. 而受检查异常不会.
+事务的回滚规则可以通过 @Transactional 注解的 rollbackFor 和 noRollbackFor 属性来定义. 这两个属性被声明为 Class[] 类型的, 因此可以为这两个属性指定多个异常类.
+rollbackFor:  遇到时必须进行回滚
+noRollbackFor: 一组异常类，遇到时必须不回滚
+
+## 超时和只读
+
+由于事务可以在行和表上获得锁,  因此长事务会占用资源, 并对整体性能产生影响. 
+如果一个事物只读取数据但不做修改, 数据库引擎可以对这个事务进行优化.
+超时事务属性: 事务在强制回滚之前可以保持多久. 这样可以防止长期运行的事务占用资源.
+只读事务属性: 表示这个事务只读取数据但不更新数据, 这样可以帮助数据库引擎优化事务.
+
+# spring整合hibernate
+
+## 整合什么
+
+1. 用Ioc容器来管理hibernate的sessionFactory
+2. 让hibernate使用上spring的声明式事务
+
+
+## spring  hibernate事务流程
+
+在方法之前
+
+1. 获取Session
+2. 把Session和当前线程绑定，就可以在Dao中使用SessionFactory的getCurrentSession()的方法来获取Session
+3. 开启事务
+
+若方法正常，没有出现异常
+
+1. 提交事务
+2. 和当前线程绑定的Session解除绑定
+3. 关闭Session
+
+若方法出现异常：
+
+1. 回滚事务
+2. 和当前线程绑定的Session解除绑定
+3. 关闭Session
