@@ -116,4 +116,17 @@ JavaConfig是配置代码，这意味着它不应该包含任何业务逻辑，J
 
 作为替代的方案，你也可以使用Spring的c-命名空间。c-命名空间是在Spring 3.0中引入的，它是在XML中更为简洁地描述构造器参数的方式。要使用它的话，必须要在XML的顶部声明其模式
 
-XML不允许某个元素的多个属性具有相同的名字
+XML不允许某个元素的多个属性具有相同的名字。
+
+`<list>`元素是`<constructor-arg>`的子元素，这表明一个包含值的列表将会传递到构造器中。其中，`<value>`元素用来指定列表中的每个元素。可以使用`<ref>`元素替代`<value>`，实现bean引用列表的装配。
+
+Spring为`<constructor-arg>`元素提供了c-命名空间作为替代方案，与之类似，Spring提供了更加简洁的p-命名空间，作为`<property>`元素的替代方案
+
+util-命名空间所提供的功能之一就是`<util:list>`元素，它会创建一个列表的bean。![Spring util-命名空间中的元素](..\Image\Spring util-命名空间中的元素.png)
+
+在使用了XML的配置之后，如果要让spring同时加载它和其他基于Java的配置可以使用`@ImportResource`注解
+
+在XML中，我们可以使用import元素来拆分XML配置
+
+Spring中装配bean的三种主要方式：自动化配置、基于Java的显式配置以及基于XML的显式配置
+
