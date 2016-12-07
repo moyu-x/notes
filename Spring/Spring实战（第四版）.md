@@ -128,5 +128,48 @@ util-命名空间所提供的功能之一就是`<util:list>`元素，它会创�
 
 在XML中，我们可以使用import元素来拆分XML配置
 
-Spring中装配bean的三种主要方式：自动化配置、基于Java的显式配置以及基于XML的显式配置
+Spring中装配bean的三种主要方式：自动化配置、基于Java的显式配置以及基于XML的显式配置。
 
+# 第三章 
+
+使用EmbeddedDatabaseBuilder会搭建一个嵌入式的Hypersonic数据库，它的模式（schema）定义在schema.sql中，测试数据则是通过test-data.sql加载的。
+
+通过JNDI获取DataSource能够让容器决定该如何创建这个DataSource，甚至包括切换为容器管理的连接池。
+
+Spring引入了bean profile的功能。要使用profile，你首先要将所有不同的bean定义整理到一个或多个profile之中，在将应用部署到每个环境时，要确保对应的profile处于激活（active）的状态。在Java配置中，可以使用`@Profile`注解指定某个bean属于哪一个profile。
+
+尽管每个DataSource bean都被声明在一个profile中，并且只有当规定的profile激活时，相应的bean才会被创
+建，但是可能会有其他的bean并没有声明在一个给定的profile范围内。没有指定profile的bean始终都会被创建，与激活哪个profile没有关系。
+
+我们也可以通过`<beans>`元素的profile属性，在XML中配置profile bean。重复使用元素来指定多个profile
+
+Spring在确定哪个profile处于激活状态时，需要依赖两个独立的属性：spring.profiles.active和spring.profiles.default。如果设置了spring.profiles.active属性的话，那么它的值就会用来确定哪个profile是激活的。但如果没有设置spring.profiles.active属性的话，那Spring将会查找spring.profiles.default的值。如果spring.profiles.active和spring.profiles.default均没有设置的话，那就没有激活的profile，因此只会创建那些没有定义在profile中的bean。
+
+有多种方式来设置这两个属性：
+
+* 作为DispatcherServlet的初始化参数；
+* 作为Web应用的上下文参数；
+* 作为JNDI条目；
+* 作为环境变量；
+* 作为JVM的系统属性；
+* 在集成测试类上，使用@ActiveProfiles注解设置。
+
+Spring提供了`@ActiveProfiles`注解，我们可以使用它来指定运行测试时要激活哪个profile。
+
+Spring 4引入了一个新的@Conditional注解，它可以用到带有@Bean注解的方法上。如果给定的条件计算结果为true，就会创建这个bean，否则的话，这个bean会被忽略。
+
+通过ConditionContext，我们可以做到如下几点：
+* 借助getRegistry()返回的BeanDefinitionRegistry检查bean定义；
+  借助getBeanFactory()返回的
+
+* ConfigurableListableBeanFactory检查bean是否存在，甚至探查bean的属性；
+
+  借助getEnvironment()返回的Environment检查环境变量是否存在以及它的值是什么；
+
+* 读取并探查getResourceLoader()返回的ResourceLoader所加载的资源；
+
+* 借助getClassLoader()返回的ClassLoader加载并检查类是否存在。
+
+从Spring 4开始，@Profile注解进行了重构，使其基于@Conditional和Condition实现
+
+@Profile本身也使用了@Conditional注解，并且引用ProfileCondition作为Condition实现
