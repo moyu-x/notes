@@ -132,6 +132,8 @@ Spring中装配bean的三种主要方式：自动化配置、基于Java的显式
 
 # 第三章 
 
+## 环境与profile
+
 使用EmbeddedDatabaseBuilder会搭建一个嵌入式的Hypersonic数据库，它的模式（schema）定义在schema.sql中，测试数据则是通过test-data.sql加载的。
 
 通过JNDI获取DataSource能够让容器决定该如何创建这个DataSource，甚至包括切换为容器管理的连接池。
@@ -156,6 +158,8 @@ Spring在确定哪个profile处于激活状态时，需要依赖两个独立的�
 
 Spring提供了`@ActiveProfiles`注解，我们可以使用它来指定运行测试时要激活哪个profile。
 
+## 条件话Bean
+
 Spring 4引入了一个新的@Conditional注解，它可以用到带有@Bean注解的方法上。如果给定的条件计算结果为true，就会创建这个bean，否则的话，这个bean会被忽略。
 
 通过ConditionContext，我们可以做到如下几点：
@@ -173,3 +177,50 @@ Spring 4引入了一个新的@Conditional注解，它可以用到带有@Bean注�
 从Spring 4开始，@Profile注解进行了重构，使其基于@Conditional和Condition实现
 
 @Profile本身也使用了@Conditional注解，并且引用ProfileCondition作为Condition实现
+
+## 处理自动装配的歧义性
+
+可以将可选bean中的某一个设为首选（primary）的bean，或者使用限定符（qualifier）来帮助Spring将可选的bean的范围缩小到只有一个bean。
+
+可以将可选bean中的某一个设为首选（primary）的bean，或者使用限定符（qualifier）来帮助Spring将可选的bean的范围缩小到只有一个bean。
+
+`@Primary`能够与`@Component`组合用在组件扫描的bean上，也可以与`@Bean`组合用在Java配置的bean声明中。
+
+设置首选bean的局限性在于@Primary无法将可选方案的范围限定到唯一一个无歧义性的选项中。它只能标示一个优先的可选方案。当首选bean的数量超过一个时，我们并没有其他的方法进一步缩小可选范围。与之相反，Spring的限定符能够在所有可选的bean上进行缩小范围的操作，最终能够达到只有一个bean满足所规定的限制条件。如果将所有的限定符都用上后依然存在歧义性，那么你可以继续使用更多的限定符来缩小选择范围。`@Qualifier`注解是使用限定符的主要方式。
+
+Java不允许在同一个条目上重复出现相同类型的多个注解
+
+## Bean的作用域
+
+在默认情况下，Spring应用上下文中所有bean都是作为以单例（singleton）的形式创建的。
+
+Spring定义了多种作用域，可以基于这些作用域创建bean，包括：
+
+* 单例（Singleton）：在整个应用中，只创建bean的一个实例。
+* 原型（Prototype）：每次注入或者通过Spring应用上下文获取的时候，都会创建一个新的bean实例。
+* 会话（Session）：在Web应用中，为每个会话创建一个bean实例。
+* 请求（Rquest）：在Web应用中，为每个请求创建一个bean实例。
+
+如果你想在Java配置中将Notepad声明为原型bean，那么可以组合使用@Scope和@Bean来指定所需的作用域：
+
+```java
+@Bean
+@Scope(configurableBeanFactory.SCOPE_PROTOTYPE)
+```
+
+我们将value设置成了WebApplicationContext中的SCOPE_SESSION常量（它的值是session）。这会告诉Spring为Web应用中的每个会话创建一个ShoppingCart。这会创建多个bean的实例，但是对于给定的会话只会创建一个实例，在当前会话相关的操作中，这个bean实际上相当于单例的
+
+```java
+@Component
+@Scope(value=WebApplicationContext.SCOPE_SESSION,
+      proxyMode=ScopedProxyMode.INTERFACES)
+```
+
+@Scope同时还有一个proxyMode属性，它被设置成了ScopedProxyMode.INTERFACES。这个属性解决了将会话或请求作用域的bean注入到单例bean中所遇到的问题
+
+## 运行时值注入
+
+有时候硬编码是可以的，但有的时候，我们可能会希望避免硬编码值，而是想让这些值在运行时再确定。为了实现这些功能，Spring提供了两种在运行时求值的方式：
+
+* 属性占位符（Property placeholder）。
+* Spring表达式语言（SpEL）。
