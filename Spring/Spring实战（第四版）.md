@@ -224,3 +224,157 @@ Spring定义了多种作用域，可以基于这些作用域创建bean，包括�
 
 * 属性占位符（Property placeholder）。
 * Spring表达式语言（SpEL）。
+
+在Spring中，处理外部值的最简单方式就是声明属性源并通过Spring的Environment来检索属性。
+
+Environment还提供了几个与属性相关的方法，如果你在使用getProperty()方法的时候没有指定默认值，并且这个属性没有定义的话，获取到的值是null。如果你希望这个属性必须要定义，那么可以使用getRequiredProperty()方法
+
+Spring也提供了通过占位符装配属性的方法，这些占位符的值会来源于一个属性源。
+
+在XML配置没有使用任何硬编码的值，它的值是从配置文件以外的一个源中解析得到的。如果我们依赖于组件扫描和自动装配来创建和初始化应用组件的话，那么就没有指定占位符的配置文件或类了。
+
+推荐使用PropertySourcesPlaceholderConfigurer，因为它能够基于Spring Environment及其属性源来解析占位符。
+
+解析外部属性能够将值的处理推迟到运行时，但是它的关注点在于根据名称解析来自于Spring Environment和属性源的属性。
+
+SpEL拥有很多特性，包括：
+
+* 使用bean的ID来引用bean；
+* 调用方法和访问对象的属性；
+* 对值进行算术、关系和逻辑运算；
+* 正则表达式匹配；
+* 集合操作。
+
+**SpEL表达式要放到“#{ ... }”之中**
+
+SpEL表达式也可以引用其他的bean或其他bean的属性，通过systemProperties对象引用系统属性。
+
+在XML配置中，你可以将SpEL表达式传入`<property>`或`<constructor-arg>`的value属性中，或者将其作为p-命名空间或c-命名空间条目的值
+
+**SpEL可以表示字面值，引用bean、属性和方法，在表达式中使用类型，计算正则表达式，计算集合**
+
+如果要在SpEL中访问类作用域的方法和常量的话，要依赖T()这个关键的运算符。如果要在SpEL中访问类作用域的方法和常量的话，要依赖T()这个关键的运算符。
+
+SpELl运算符：
+
+![SpEL运算符1](..\Image\SpEL运算符1.png)
+
+![SpEL运算符2](..\Image\SpEL运算符2.png)
+
+比较运算符有两种形式：符号形式和文本形式。在大多数情况下，符号运算符与对应的文本运算符作用是相同的。
+
+比较运算符有两种形式：符号形式和文本形式。在大多数情况下，符号运算符与对应的文本运算符作用是相同的。
+
+SpEL通过matches运算符支持表达式中的模式匹配。matches运算符对String类型的文本（作为左边参数）应用正则表达式（作为右边参数）。matches的运算结果会返回一个Boolean类型的值：如果与正则表达式相匹配，则返回true；否则返回false。
+
+选择运算符在它的方括号中接受另一个表达式。
+
+SpEL还提供了另外两个查询运算符：“.^[]”和“.$[]”，它们分别用来在集合中查询第一个匹配项和最后一个匹配项
+
+**在动态注入值到Spring bean时，SpEL是一种很便利和强大的方式。我们有时会忍不住编写很复杂的表达式。但需要注意的是，不要让你的表达式太智能。你的表达式越智能，对它的测试就越重要。SpEL毕竟只是String类型的值，可能测试起来很困难。鉴于这一点，我建议尽可能让表达式保持简洁，这样测试不会是什么大问题**
+
+Java 8允许出现重复的注解，只要这个注解本身在定义的时候带有@Repeatable注解就可以。不过，Spring的@Qualifier注解并没有在定义时添加@Repeatable注解
+
+# 第四章 面向切面的Spring
+
+描述切面的常用术语有通知（advice）、切点（pointcut）和连接点（join point）
+
+![切面实例](..\Image\切面实例.png)
+
+Spring切面可以应用5种类型的通知：
+
+* 前置通知（Before）：在目标方法被调用之前调用通知功能；
+* 后置通知（After）：在目标方法完成之后调用通知，此时不会关心方法的输出是什么；
+* 返回通知（After-returning）：在目标方法成功执行之后调用通知；
+* 异常通知（After-throwing）：在目标方法抛出异常后调用通知；
+* 环绕通知（Around）：通知包裹了被通知的方法，在被通知的方法调用之前和调用之后执行自定义的行为。
+
+我们的应用可能也有数以千计的时机应用通知。这些时机被称为连接点。连接点是在应用执行过程中能够插入切面的一个点。这个点可以是调用方法时、抛出异常时、甚至修改一个字段时。切面代码可以利用这些点插入到应用的正常流程之中，并添加新的行为。
+
+引入允许我们向现有的类添加新方法或属性。
+
+织入是把切面应用到目标对象并创建新的代理对象的过程。切面在指定的连接点被织入到目标对象中。在目标对象的生命周期里有多个点可以进行织入：
+
+* 编译期：切面在目标类编译时被织入。这种方式需要特殊的编译器。AspectJ的织入编译器就是以这种方式织入切面的。
+* 类加载期：切面在目标类加载到JVM时被织入。这种方式需要特殊的类加载器（ClassLoader），它可以在目标类被引入应用之前增强该目标类的字节码。AspectJ 5的加载时织入（load-timeweaving，LTW）就支持以这种方式织入切面。
+* 运行期：切面在应用运行的某个时刻被织入。一般情况下，在织入切面时，AOP容器会为目标对象动态地创建一个代理对象。Spring AOP就是以这种方式织入切面的。
+
+通知包含了需要用于多个应用对象的横切行为；连接点是程序执行过程中能够应用通知的所有点；切点定义了通知被应用的具体位置（在哪些连接点）。其中关键的概念是切点定义了哪些连接点会得到通知。
+
+Spring提供了4种类型的AOP支持：
+
+* 基于代理的经典Spring AOP；
+* 纯POJO切面；
+* @AspectJ注解驱动的切面；
+* 注入式AspectJ切面（适用于Spring各版本）
+
+前三种都是Spring AOP实现的变体，Spring AOP构建在动态代理基础之上，因此，Spring对AOP的支持局限于方法拦截
+
+引入了简单的声明式AOP和基于注解的AOP之后，Spring经典的AOP看起来就显得非常笨重和过于复杂，直接使用ProxyFactory Bean会让人感觉厌烦。
+
+借助Spring的aop命名空间，我们可以将纯POJO转换为切面。实际上，这些POJO只是提供了满足切点条件时所要调用的方法。
+
+借助Spring的aop命名空间，我们可以将纯POJO转换为切面。实际上，这些POJO只是提供了满足切点条件时所要调用的方法。
+
+![AOP调用](..\Image\AOP调用.png)
+
+直到应用需要被代理的bean时，Spring才创建代理对象。如果使用的是ApplicationContext的话，在ApplicationContext从BeanFactory中加载所有bean的时候，Spring才会创建被代理的对象。因为Spring运行时才创建代理对象，所以我们不需要特殊的编译器来织入Spring AOP的切面。
+
+**Spring只支持方法级别的连接点**
+
+因为Spring基于动态代理，所以Spring只支持方法连接点。
+
+**关于Spring AOP的AspectJ切点，最重要的一点就是Spring仅支持AspectJ切点指示器（pointcut designator）的一个子集。**
+
+![AspectJ切点](..\Image\AspectJ切点.png)
+
+![AspectJ注解](..\Image\AspectJ注解.png)
+
+如果你使用JavaConfig的话，可以在配置类的类级别上通过使用EnableAspectJ-AutoProxy注解启用自动代理功能。
+
+假如你在Spring中要使用XML来装配bean的话，那么需要使用Springaop命名空间中的`<aop:aspectj-autoproxy>`元素。
+
+不管你是使用JavaConfig还是XML，AspectJ自动代理都会为使用@Aspect注解的bean创建一个代理，这个代理会围绕着所有该切面的切点所匹配的bean。
+
+使用Spring AOP，我们可以为bean引入新的方法。代理拦截调用并委托给实现该方法的其他对象。
+
+![切面代理](..\Image\切面代理.png)
+
+我们需要注意的是，当引入接口的方法被调用时，代理会把此调用委托给实现了新接口的某个其他对象。实际上，一个bean的实现被拆分到了多个类中。
+
+@DeclareParents注解由三部分组成：
+
+* value属性指定了哪种类型的bean要引入该接口。在本例中，也就是所有实现Performance的类型。（标记符后面的加号表示是Performance的所有子类型，而不是Performance本身。）
+* defaultImpl属性指定了为引入功能提供实现的类。在这里，我们指定的是DefaultEncoreable提供实现。
+* @DeclareParents注解所标注的静态属性指明了要引入了接口。在这里，我们所引入的是Encoreable接口。
+
+当Spring发现一个bean使用了@Aspect注解时，Spring就会创建一个代理，然后将调用委托给被代理的bean或被引入的实现，这取决于调用的方法属于被代理的bean还是属于被引入的接口。
+
+AOP的命名空间：
+
+![AOP命名空间1](..\Image\AOP命名空间1.png)
+
+![AOP命名空间2](..\Image\AOP命名空间2.png)
+
+关于Spring AOP配置元素，第一个需要注意的事项是大多数的AOP配置元素必须在`<aop:config>`元素的上下文内使用。
+
+使用环绕通知，我们可以完成前置通知和后置通知所实现的相同功能，而且只需要在一个方法中 实现。因为整个通知逻辑是在一个方法内实现的，所以不需要使用成员变量保存状态。
+
+`<aop:declare-parents>`声明了此切面所通知的bean要在它的对象层次结构中拥有新的父类型。
+
+当Spring AOP不能满足需求时，我们必须转向更为强大的AspectJ。
+
+# 第五章 构建Spring Web应用程序
+
+Spring MVC所经历的所有站点：
+
+![SpringMVC经过的视图处理站点](..\Image\SpringMVC经过的视图处理站点.png)
+
+Spring提供了这个接口的实现，名为SpringServletContainerInitializer，这个类反过来又会查找实现WebApplicationInitializer的类并将配置的任务交给它们来完成。
+
+当DispatcherServlet启动的时候，它会创建Spring应用上下文，并加载配置文件或配置类中所声明的bean。
+
+要求DispatcherServlet加载应用上下文时，使用定义在WebConfig配置类（使用Java配置）中的bean。
+
+但是在Spring Web应用中，通常还会一个应用上下文，
+这个应用上下文是由ContextLoaderListener创建的。我们希望DispatcherServlet加载包含Web组件的bean，如控制器、视图解析器以及处理器映射，而ContextLoaderListener要加载应用中的其他bean。这些bean通常是驱动应用后端的中间层和数据层组件。
