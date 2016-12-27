@@ -1,3 +1,0 @@
-java提供了两个帮助排序的接口：`Comparable`和`Comparator`：Comparable接口用于自然排序，而Comparator接口则用于需要对排列的顺序进行精准控制的情形。
-
-Arrays和Collections类都有一些重载的sort方法。这些方法大体上可以分为两类：一类接受一个数组作为参数，另一类接受一个数组和一个Comparator对象作为参数
