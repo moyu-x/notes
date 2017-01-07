@@ -89,8 +89,8 @@ Spring提供了`Qualifier`注解，当将`@Qualifer`注解与`@Autowired`和`@Be
 创建Bean的方法：
 
 1.  调用相关类中一个可用的构造函数
-2. 调用可用的静态或实例工厂方法
-3. 使用Spring自带的FactoryBean接口
+2.  调用可用的静态或实例工厂方法
+3.  使用Spring自带的FactoryBean接口
 
 默认情况下，由Spring容器创建的所有Bean都是Singleton作用域。当不同的Bean与不同的层相对应的时，可用使用Singleton作用域，此时创建的实例都是无状态实例，在同一时间服务于不同的请求。
 
@@ -117,3 +117,80 @@ Spring的作用域：
 1. 基于XML的配置的``元素有init-method和destory-method特性，它们接收Bean类中的方法名称作为特性值
 2. Spring还支持JSR-250 Common Java注解`@PostConstruct`和`PreDestory`注解
 3. 使用Spring提供的两个特殊接口：InitializingBean和DisposableBean,，分别声明了afterPropertiesSet()和destory()方法
+
+有时可能需要根据运行时环境来定义Bean，因为在一个配置元数据文件中不能有两个同名的Bean定义，所有首先必须创建两个不同的Bean配置元数据文件，在每个文件中包括了针对特定环境或平台的Bean定义，通常此时还需要创建第三个带有一个导入元素的Bean配置文件，该元素根据一些特定平台值导入两个元数据中的一个。
+
+Spring 3.1引入了Bean定义配置文件。在基于XML的配置文件中，该配置文件支持在一个`<beans>`元素中定义另一个`<beans>`元素。
+
+![依赖注入的元素标记](../Image/依赖注入的元素标记.png)
+
+# 第三章 使用Spring MVC构建Web应用程序
+
+万维网的三个核心元素：HTML，HTTP和URI
+
+![BeginningSpringMVC结构](../Image/BeginningSpringMVC结构.png)
+
+![DispatchServlet](../Image/DispatchServlet.png)
+
+DispatchServlet的定义包含在Web应用程序的部署描述文件中，即web.xml文件
+
+```xml
+<servlet>
+	<servlet-name>springmvc</servlet-name>
+	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  	<load-on-startup>1</load-on-startup>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>springmvc</servlet-name>
+	<url-pattern>*.mvc</url-pattern>
+</servlet-mapping>
+```
+
+默认情况下，该配文件的解析机制使用了一个默认的命名约定。Servlet默认在WEB-INF文件夹下查找名为{servlet-name}-servlet.xml的配置文件。
+
+如果使用的是Spring 3.1，还可以在web-fragment.xml文件中定义Servlet，从而向应用程序引入可拔插功能
+
+通过实现ServletContextAware接口，在WebApplicationContext内注册的Bean还可以访问Servlet的上下文。
+
+在Spring 3.2之前，需要在XML配置文件中声明`<mvc:annotation-driven/>`标签，以便将请求调度配置到控制器类；并且需要将DefaultAnnotationHandlerMapping和AnnotationMethodHandlerAdapterBean注册到应用程序上下文，以便请求处理。
+
+@Controller用来表示被注解的类作为MVC框架的一个Controller的主要注解
+
+@RequestMapping注解被用来将用户的请求映射到处理器类或方法。
+
+@ModeAtrribute注解使用一个向视图公开的键将一个返回值与一个参数绑定起来
+
+@PathVariable注解将一个方法参数绑定到一个URL模板
+
+@ControllerAdvice注解能够让我们将代码集中到一个地方，以便跨控制器共享代码
+
+@InitBinder注解确定用来出事化WebDataBinder
+
+@ExceptionHandler注解可以订阅方法来处理在控制类中发生的异常
+
+如果对一个字段同时应用了注解的消息特性和隐式键定义，那么隐式定义的优先级高于注解和消息特性
+
+Spring提供了两种方法来处理文件上传：
+
+1. 使用Commons FileUpload多部分请求流程
+2. 使用Servlet 3.1多部分请求流程
+
+默认情况下，Spring并不会处理任何多部分请求，所有为了启用多部分处理，首先需要在Web应用程序的上下文中定义一个多部分解析器，DispatcherServlet可以访问该解析器。Bean名称应该被定义multipartResolver。
+
+因为一般来说应该在一个公共的中心位置处理异常，所以创建一个可以处理异常的全局方法显得很有意义（@ControllerAdvice）
+
+为了初始化区域设置解析器，Dispatcher Servlet在应用程序上下文中查找一个名为localeResolver的Spring Bean。如果没有找到该Bean，则配置使用AcceptHeaderLocaleResolver Bean，其使用键accept-language从HTTP请求头中提取区域设置信息，而该区域设置信息有客服端浏览器发送。处理区域设置信息的一个更好的方法是将其存储在用户会话中。SessionLocaleResolver类通过一个预定义会话特性来存储该信息。
+
+更改区域设置的另一种方法是使用CokieLocaleResolver类，该类在客户端搜索一个Cookie，如果找到，则设置区域设置。
+
+Spring 4.0引入了扩展自LocaleResolver的LocaleContextResolver接口，从而支持丰富的区域设置上下文。
+
+主题架构包含三个主要机制：支持主题的资源包、主题解析器和主题更改拦截器。
+
+DispatcherServlet将在应用程序上下文中查找一个名为themeResolver的Spring bean，如果该Bean不存在，则配置使用FixedThemeResolver
+
+![SpringMVC的标签](../Image/SpringMVC的标签.png)
+
+# 第四章 使用Spring进行JDBC数据访问
+
