@@ -194,3 +194,39 @@ DispatcherServlet将在应用程序上下文中查找一个名为themeResolver�
 
 # 第四章 使用Spring进行JDBC数据访问
 
+JDBC没有对不同的数据库供应商所提供的SQL符号进行完全抽象。一般来说，开发人员需要编写特定于自己所使用的关系数据库供应商的SQL语句
+
+当使用JDBC时，通常会长数据访问层使用以下类似模式：
+
+```java
+try {
+  // obtain database connection
+  // start a transaction
+  // create and execute the query
+  // process qurey result
+  // commit the transaction
+} catch (SQLException e) {
+  // handle SQL execeptions, perform transaction rollback
+} finally {
+  // close db resource like connections, statements
+}
+```
+
+Spring主要使用三种主要方法来提供数据访问操作（通过使用JDBC来完成）：
+
+* 使用基于Template Method模式的使用程序类，并通过删除应用程序中重复的数据访问代码块，正确处理资源清理等操作，从而更容易地完成JDBC操作。
+* 通过使用诸如SimpleJdbcInsert和SimpleJdbcCall之类的类及数据库元数据，简化查询
+* 通过使用MappingSqlQuery、SQLUpdate和StroredProcedure类，将数据库操作表示为可重复使用的Java对象
+
+使用Spring的DriverManagerDataSource类定义一个dataSource Bean，该类是javax.sql.DataSource接口的简单实现。但是不要在生产环境中使用。
+
+Spring对创建华为使用轻量级的数据库实例提供了良好的支持，为此提供了EmbeddedDatabase接口。
+
+可以使用SQL脚本填充嵌入式数据库，而该脚本可以作为输入参数提供。此时，需要在根类路径中创建schema.sql个data.sql脚本文件，以便上面所述的测试类可以正常工作。
+
+对于企业级的Java生产环境来说，使用带有连接池功能的DataSource实例可能更加合适。（C3P0或DBCP）。
+
+如果想要使用有应用程序服务器管理的DataSource实例，可以使用Spring的JEE架构命名空间支持，并借助于JNDI查找访问该实例。
+
+
+
