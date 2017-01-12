@@ -228,5 +228,34 @@ Spring对创建华为使用轻量级的数据库实例提供了良好的支持�
 
 如果想要使用有应用程序服务器管理的DataSource实例，可以使用Spring的JEE架构命名空间支持，并借助于JNDI查找访问该实例。
 
+每次应用程序启动时都会运行初始化脚本，如果只想执行一次初始化脚本，则必须在应用程序之外执行初始化脚本或者有条件的运行初始化脚本。
+
+Spring的JDBC支持的核心类是JdbcTemplate。该类简化了JDBC的使用并有助于避免常见错误的发生。可以使用JdbcTemplate执行SQL查询或者插入、更新和删除语句。他执行核心的JDBC工作流，在ResultSets上进行迭代操作以及获取JDBC异常并将其转换为Spring提供的泛型的、可提供更多信息的DataAccessException结构。应用程序代码只需提供SQL以及必要的ResultSet处理逻辑即可。
+
+JdbcTemplate被定义为一个Spring管理的Bean。该Bean是线程安全的，并且可以被不同的数据访问对象共享，因此，它被定义成单例。JdbcTemplate Bean的主要依赖是一个DataSource对象。
+
+可以使用RowMapper将ResultSet中返回的每一行映射到一个结果对象。
+
+QuerForList()方法执行查询并返回一个List，其中元素是使用列名作为键的Map
+
+NamedParameterJdbcTemplate实际上封装了JdbcTemplate，所以几乎所以的艰苦工作都由JdbcTemplate来完成。
+
+SQLParameterSource接口有多个不同实现，而MapSQLParameterSource是其中之一。它实际上封装了一个普通的Map，所有键是命名参数名，而值是命名参数值。此外BeanPropertySqlParemeterSource实现封装了JavaBean对象，而该对象的属性被用作命名参数值。
+
+IN字句在SQL标准中仅支持100个以内的占位符作为查询参数。
+
+使用SimpleJdbcCall和StoredProcedure类调用存储过程和存储函数。
+
+可以使用batchUpdate进行批处理
+
+访问特定于供应商的JDBC方法：
+
+```java
+Connection con = jdbcTemplate.getDataSource().getConnection();
+Connection nativeCon = jdbcTemplate.getNativeJdbcExtractor().getNativeConnection(con);
+```
+
+
+
 
 
