@@ -255,7 +255,23 @@ Connection con = jdbcTemplate.getDataSource().getConnection();
 Connection nativeCon = jdbcTemplate.getNativeJdbcExtractor().getNativeConnection(con);
 ```
 
+当使用java.sql.Statement执行一个查询时，数据库首先获取查询字符串，然后在执行之前进行解析、编译以及计算执行计划。
 
+通过使用Spring，可以将任意SQL查询封装为一个Java对象。为此，Spring提供了抽象类MappingSQLQuery，线程安全，并且可以被应用程序中的其他DAO对象所共享。
+
+在实现可重复使用的查询对象的过程中，第一步是向其超类构造函数传入一个可用的dataSource Bean以及一个SQL查询语句。第二步，通过调用declareParameter(...)方法为构造函数提供SQL参数，而这些参数使用了SQLParameter实例。最后一步是调用compile()方法。
+
+Spring JDBC所抛出的所有异常都是DataAccessException（RuntimeException类型）的子类，所有不必显示处理。任何被底层JDBC API抛出的受检查的SQLException都还与DataAccessException框架子类相映射。
+
+可以使用Spring的JDBC支持所提供的SQLExceptionTranslator自动将SQLException转换为特定于Spring的DataAccessException。SQLExceptionTranslator类实际上是一个接口，并且有多个实现。
+
+Spring所使用的默认实现是SQLErrorCodeSQLExceptionTranslator，而该实现使用了特定供应商的错误代码。错误代码可以通过SQLErrorCodeFactory类获取，该工厂类从项目类路径中加载一个sql-error-codes.xml文件。
+
+SQLExceptionTranslato接口的另一个公共实现是SQLStatteSQLExceptionTranslator，它使用了抛出SQLException中的SQL状态信息。
+
+默认情况下，如果JdbcTemplate的dataSource依赖得到满足，那么JdbcTemplate会创建并使用SQLErrorCodeExceptionTranslator；否则，就会就会SQLStateCodeExceptionTranslator。其结果就是，在默认情况下，如果数据访问对象正在使用JdbcTemplate，就可以利用自动异常转换功能。
+
+![Spring的JDBC知识点](../Image/Spring的JDBC知识点.png)
 
 
 
