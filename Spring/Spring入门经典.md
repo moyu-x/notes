@@ -318,6 +318,34 @@ JPA有两种事物模式：一种是RESOURCE_LOCAL，另一种是JTA
 
 如果之间连接有Hibernate管理，那么提供一个方言类是可选的。因为Hibernate可以通过查看JDBC驱动程序类知道使用的是哪一个数据库，所以可以自己推断出对应的方言类。
 
+JPA或者ORM的另一个重要特征是传递性持久化。对于在使用EntityManager实例加载的实体实例上锁完成的更改，JPA会进行跟踪。被更改的实体标记为“脏数据”。该过程称为自动脏数据检查。在实体上完成的更改会导致更新语句，当开发人员提交事务时，JPA会执行这些更新语句。只要实体与EntityManager相连接，并且EntityManager保持打开状态，那么实体就会被跟踪。当关闭EntityManager时，加载的实体将分离，而它们的状态更改不会被跟踪。此时需要一个新的EntityManager实例并使用merge操作重新加载或者重新关联它们。
+
+使用Spring的JPA带来的好处：
+
+* 更容易且更加强大的持久化单元配置
+* 自动EntityManager管理
+* 更容易测试
+* 常见的数据访问异常
+* 集成事务管理
+
+Spring提供三种不同的方法来配置EntityManagerFactory：
+
+* LocalEntityManagerFactoryBean
+* 通过JNDI进行EntityManagerFactory查找
+* LocalContainerEntityManagerFactoryBean
+
+@PersistenceUnit注解表示对EntityManagerFactory的依赖，而@PersistenceContext则表示对容器管理的EntityManager实例的依赖。
+
+Spring可以处理数据访问层中抛出的不同类型的数据访问异常，并将这些异常转换为一个Spring定义的标准的数据访问异常层次结构，从而减轻开发人员的工作量。
+
+为了使用Spring的异常处理和转换能力，需要使用`@Repository`注解来标记DAO，然后，需要从PersistenceExceptionTranslationPostProccessor类创建一个Bean定义，以便Spring通知DAO Bean，捕获特定技术的数据访问异常，并将异常转换为DataAccessException层次结构。
+
+![SpringJPA1](../Image/SpringJPA1.png)
+
+![SpringJAP2](../Image/SpringJAP2.png)
+
+# 第六章 使用Spring管理事务
+
 
 
 
