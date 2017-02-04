@@ -346,7 +346,7 @@ Spring可以处理数据访问层中抛出的不同类型的数据访问异常�
 
 # 第六章 使用Spring管理事务
 
-事务隔离的属性：
+事务隔离的属性（ACID）：
 
 * 原子性：在任何事务中都可能在数据上执行多个操作。
 * 一致性：为了让一个系统保持一致，一个活动事务结束之后底层数据库必须处于一致状态。
@@ -357,5 +357,68 @@ Spring可以处理数据访问层中抛出的不同类型的数据访问异常�
 
 在JPA中，几乎每个方法调用都会抛出受检查的java.sql.SQLException。
 
+每种数据访问技术都有其事务机制，他们各自提供不同的API来开始新事务，当数据操作成功完后提交事务，或在发送错误时回滚事务。
 
+Spring的事务抽象模型基于PlathformTransctionManager接口，并且存在不同的具体实现，而每一种实现都与一个特定的数据访问技术相对应。
+
+![与不同数据访问技术对应的PlathformTransctionManager实现](../Image/与不同数据访问技术对应的PlathformTransctionManager实现.png)
+
+事务是需要定义边界的，事务性方法的一般结构：
+
+```java
+try {
+  begin transaction
+  execute transactional code block
+  commit transation
+} catch (Exection e) {
+  handle exception
+  rollback transaction
+} finally {
+  do resource clean up
+}
+```
+
+事务管理是一个横切关注点，而横切管制点最好使用面向切面的编程
+
+当调用服务方法是，如果事务不存在，则开始事务。然后将事务资源（此时为Connection对象）存储在一个ThreadLocal数据结构总，可以从代码的任何位置访问该资源，并且不必知道如何直接访问一个ThreadLocal数据结构。
+
+事务传播的规则：
+
+* Propagation REQUIRED：当调用一个方法是，如果不存在事务，Propagation REQUIRED会开始一个新事务，但如果存在一个由其他方法调用而开始的活动事务，则保持该事务，并且在同一事务中执行第二个方法调用。
+* Propagation REUIRES_NEW：不管是否已经存在一个活动事务，通常都会开始一个新的事务。
+* Propagation NESTED：不管是否已经存在一个活动事务，通常都会开始一个新的事务，但并没有两个独立的事务，而只有一个跨越不同方法调用的活动事务。
+* Propagation SUPPORTS：让当前的方法在一个事务中工作，否则，方法在没有任何事务的情况下工作。
+* Propagation NOT_SUPPORTS：如果存在一个活动事务，那么该活动事务将被暂停，直到方法调用结束为止。
+* Propagation NEVER：当方法调用时，如果系统中存在一个活动事务且发生了错误，那么必须在系统中没有任何活动事务的情况下调用方法。
+* Propagation MANDATORY：当调用方法是，如果系统中不存在一个活动的事务且发生了错误，必须确保在访问该方法是已经创建了一个事务。
+
+![事务传播的规则](../Image/事务传播的规则.png)
+
+Spring通过使用代理执行声明式事务。
+
+编程式事务管理：
+
+1. 使用TransctionTemplate，这是Spring推荐使用的方法
+2. 直接使用PlatformTransctionManager，这是一种低级的方法。
+
+在TransctionSynchronization方法中，使用了一种回调机制来指定在当前事务结束时候需要指定的自定义代码块。
+
+![事务管理总结](../Image/事务管理总结.png)
+
+# 第七章 使用Spring进行测试驱动开发
+
+如果多个测试类指定了完全相同的XML位置和配置类，那么Spring TestContext Framework将只创建一次ApplicationContext实例，并在运行时在这些测试类之间共享该实例。
+
+Spring TestContext Framework在测试方法结束后执行的是回滚操作而不是提交操作。所以除非手动在当前Hibernate Session或者JPA EntityManager中执行刷新操作，否则在测试方法张红执行持久化操作并不会被转化为对应的SQL指令，也不会与数据库有任何交互。
+
+对Spring MVC的测试（Mock）：
+
+* 测试控制器
+* 测试表单提交
+* 测试异常处理程序
+* 打印模拟请求和响应
+
+![使用Spring进行测试驱动开发](../Image/使用Spring进行测试驱动开发.png)
+
+# 第八章 使用Spring进行面向切面编程
 
