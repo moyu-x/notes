@@ -174,3 +174,13 @@ org.apache.ibatis.logging.LogFactory.useCommonsLogging();
 org.apache.ibatis.logging.LogFactory.useStdOutLogging();
 ```
 
+# 使用XML配置SQL Mapper
+
+MyBatis提供了一个通过Mapper接口创建映射语句的好方法。一旦我们通过Mapper XML配置映射语句，我们可以创建一个与全限定名称相同的Mapper接口并添加具有匹配语ID的方法签名，输入参数和返回类型。
+
+在XML映射文件中的命名空间是Mapper的全限定类名，而id，parameterType和returnType则和Mapper类的方法名称，参数类型和返回类型相同。
+
+### 映射语句
+
+MyBatis提供了各种不同元素来配置不同类型语句，例如SELECT，INSERT，UPDATE和DELETE。
+
