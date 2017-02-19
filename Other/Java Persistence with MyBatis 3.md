@@ -180,7 +180,39 @@ MyBatis提供了一个通过Mapper接口创建映射语句的好方法。一旦�
 
 在XML映射文件中的命名空间是Mapper的全限定类名，而id，parameterType和returnType则和Mapper类的方法名称，参数类型和返回类型相同。
 
-### 映射语句
+## 映射语句
 
 MyBatis提供了各种不同元素来配置不同类型语句，例如SELECT，INSERT，UPDATE和DELETE。
 
+对于像数据库中进行插入的语句来说，我们可以用useGeneratedKeys和keyProperty属性让数据库生成auto_increment列值并将生成的值设置为其中的一个输入对象属性。
+
+对于SELECT返回的数据，我们可以使用集合来进行管理：
+
+1. 对于List， Collection，或者Iterable类型，返回值是java.util.ArrayList
+2. 对于Map类型，返回值是java.util.HashMap
+3. 对于Set类型，返回值是java.util.HashSet
+4. 对于SortedSet，返回值为java.util.TreeSet
+
+## ResultMaps
+
+我们可以定义ResultMaps并引用此resultMap查询几个SELECT语句。
+
+当resultMap属性配置为`<select>`语句，MyBatis使用属性列映射以便填充JavaBeans属性。
+
+## 一对一映射
+
+对于一对一的映射，有三种方式可以进行处理：
+
+1. 普通方式
+2. 使用ResultMap：通过在xml文件的ResultMap中加入`<association>`元素来连接其他文件中的ResultMap文件
+3. 使用Select：现在xml文件中加入其他select语句，然后在ResultMap中用`<association>`进行连接
+
+## 一对多映射
+
+我们可以将一对多类型的结果映射到使用对象的集合`<collection>`元素。当然也是可以使用ResultMap，也可以使用Select
+
+## 动态SQL
+
+MyBatis提供了对于动态SQL查询的一流支持，例如：`<if>`、`<choose>`、`<where>`、`<foreach>`和`<trim>`
+
+`<if>`元素可用于有条件地嵌入SQL代码段。
