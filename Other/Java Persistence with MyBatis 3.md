@@ -216,3 +216,62 @@ MyBatis提供了各种不同元素来配置不同类型语句，例如SELECT，I
 MyBatis提供了对于动态SQL查询的一流支持，例如：`<if>`、`<choose>`、`<where>`、`<foreach>`和`<trim>`
 
 `<if>`元素可用于有条件地嵌入SQL代码段。
+
+MyBatis评估`<choose>`测试条件并使用带第一个子句条件，计算结果为TRUE。如果没有条件为真，则`<otherwise>`子句将被使用。
+
+`<where>`元素只有在内部返回任何内容时才插入WHERE条件标签。此外，如果WHERE子句开始，它将删除AND或OR前缀与AND或OR.
+
+`<trim>`元素的工作方式类似于`<where>`，但提供了额外的灵活性的去处前缀/后缀的需要。
+
+`<set>`元素类似于`<where>`元素，任何内容都由内部条件返回并且将插入SET。
+
+### 处理枚举类型
+
+默认情况下，MyBatis使用EnumTypeHandler来处理枚举类型Java属性和存储枚举值的名称。您不需要任何额外的配置来做到这一点。
+
+使用RowBounds来进行分页
+
+使用ResultSet自定义使用ResultSetHandler
+
+## 缓存
+
+MyBatis默认使用一级缓存
+
+当您添加`<cache />`元素时，将发生以下情况：
+
+* 使用`<select>`语句查询出来的数据将被缓存
+* 所有`<insert>`，`<update>`和`<delete>`操作查询出来的数据将会刷新缓存
+* 缓存将会使用最近最少使用算法进行更新
+* 缓存将不会对任何基于时间的计划刷新
+* 缓存将会存储1024个对象或引用列表
+
+# 使用注解配置Mapper
+
+使用@Insert注解进行插入
+
+使用@Options注解配置自动生成键
+
+使用@Update注解配置更新语句
+
+使用@Delete进行配置删除
+
+使用@Select进行查询配置
+
+使用@Results配置ResultMap
+
+我们也可以在xml文件中配置好ResultMap，然后在Mapper文件中使用@ResultMap进行引入
+
+动态SQL提供程序方法可以具有以下参数之一：
+
+* 没有参数
+* 单个参数具有相同类型的Mapper接口方法
+* java.util.Map
+
+然后使用@SelectProvider来调用这些方法
+
+@InsertProvider
+
+@UpdateProvider
+
+@DeleteProvider
+
