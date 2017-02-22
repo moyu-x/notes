@@ -275,3 +275,28 @@ MyBatis默认使用一级缓存
 
 @DeleteProvider
 
+# Spring集成MyBatis
+
+Spring可以通过以下配置要创建SQLSessionFactory对象：
+
+* dataSource 
+* typeAliases
+* typeAliasesPackage
+* typeHandlers
+* typeHandlersPackage
+* mapperLocations
+* configLocation
+
+当SqlSessionFactory配置完成后，我们需要配置SQLSessionTemplate，这是一个线程安全的对象，我们可以从中获取安全的SqlSession对象
+
+```xml
+<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+  <constructor-arg index="0" ref="sqlSessionFactory" />
+</bean>
+```
+
+可以使用基于XML配置文件的Spring Bean或者使用基本注解的配置的Spring Bean，将SqlSession bean注入到需要的bean中
+
+`<mybatis：scan>`元素将在指定的搜索Mapper接口以逗号分隔的包名称列表，当然通过注解@MapperScan也是可以完成这样一个过程的，当然如果不使用的话就要使用XML文件为每一个Mapper进行相关的配置了
+
+也可以在Spring中接合MyBatis来完成事务管理
