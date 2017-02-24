@@ -56,3 +56,19 @@ If the implementation is easy to explain, it may be a good idea.
 Namespaces are one honking great idea -- let's do more of those!
 ```
 
+# 列表
+
+列表 由一系列按特定顺序排列的元素组成。
+
+有时候，你不知道要从列表中删除的值所处的位置。如果你只知道要删除的元素的值，可使用方法 remove() 。
+
+Python 方法 sort() 让你能够较为轻松地对列表进行排序。
+
+你还可以按与字母顺序相反的顺序排列列表元素，为此，只需向 sort() 方法传递参数 reverse=True 。
+
+要保留列表元素原来的排列顺序，同时以特定的顺序呈现它们，可使用函数 sorted() 。函数 sorted() 让你能够按特定顺序显示列表元素，同时不影响它们在列表中的原始排
+列顺序。
+
+要反转列表元素的排列顺序，可使用方法 reverse() 。
+
+ Python 通过使用缩进让代码更易读；简单地说，它要求你使用缩进让代码整洁而结构清晰。在较长的 Python 程序中，你将看到缩进程度各不相同的代码块，这让你对程序的组织结构有大致的认识。
