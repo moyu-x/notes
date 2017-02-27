@@ -158,3 +158,87 @@ Streams库的内部迭代可以自动选择一种适合你硬件的数据表示�
 * filter 和 map 等中间操作会返回一个流，并可以链接在一起。可以用它们来设置一条流水线，但并不会生成任何结果。
 * forEach 和 count 等终端操作会返回一个非流的值，并处理流水线以返回结果。
 * 流中的元素是按需计算的
+
+# 五 使用流
+
+Streams 接口支持 filter 方法（你现在应该很熟悉了）。该操作会接受一个谓词（一个返回boolean 的函数）作为参数，并返回一个包括所有符合谓词的元素的流。
+
+流还支持一个叫作 distinct 的方法，它会返回一个元素各异（根据流所生成元素的hashCode 和 equals 方法实现）的流。
+
+流支持 limit(n) 方法，该方法会返回一个不超过给定长度的流。所需的长度作为参数传递给 limit 。如果流是有序的，则最多会返回前 n 个元素。
+
+流还支持 skip(n) 方法，返回一个扔掉了前 n 个元素的流。如果流中元素不足 n 个，则返回一个空流。
+
+使用 flatMap 方法的效果是，各个数组并不是分别映射成一个流，而是映射成流的内容。
+
+一言以蔽之， flatmap 方法让你把一个流中的每个值都换成另一个流，然后把所有的流连接起来成为一个流。
+
+anyMatch 方法可以回答“流中是否有一个元素能匹配给定的谓词”。
+
+allMatch 方法的工作原理和 anyMatch 类似，但它会看看流中的元素是否都能匹配给定的谓词。
+
+ noneMatch 它可以确保流中没有任何元素与给定的谓词匹配。
+
+reduce 接受两个参数：
+
+* 一个初始值，这里是0；
+* 一个 `BinaryOperator<T> `来将两个元素结合起来产生一个新值
+
+![中间操作和终端操作](..\Image\Java8实战\中间操作和终端操作.jpg)
+
+Java 8引入了三个原始类型特化流接口来解决这个问题： IntStream 、 DoubleStream 和LongStream ，分别将流中的元素特化为 int 、 long 和 double ，从而避免了暗含的装箱成本。
+
+将流转换为特化版本的常用方法是 mapToInt 、 mapToDouble 和 mapToLong 。
+
+ Optional 可以用Integer 、 String 等参考类型来参数化。对于三种原始流特化，也分别有一个 Optional 原始类型特化版本： OptionalInt 、 OptionalDouble 和 OptionalLong 。
+
+Stream API提供了两个静态方法来从函数生成流： Stream.iterate 和 Stream.generate 。这两个操作可以创建所谓的无限流：不像从固定集合创建的流那样有固定大小的流。由 iterate和 generate 产生的流会用给定的函数按需创建值，因此可以无穷无尽地计算下去！一般来说，应该使用 limit(n) 来对这种流加以限制，以避免打印无穷多个值。
+
+小结：
+
+* Streams API可以表达复杂的数据处理查询
+* 你可以使用 filter 、 distinct 、 skip 和 limit 对流做筛选和切片。
+* 你可以使用 map 和 flatMap 提取或转换流中的元素。
+* 你可以使用 findFirst 和 findAny 方法查找流中的元素。你可以用 allMatch 、noneMatch 和 anyMatch 方法让流匹配给定的谓词。
+* 这些方法都利用了短路：找到结果就立即停止计算；没有必要处理整个流。
+* 你可以利用 reduce 方法将流中所有的元素迭代合并成一个结果，例如求和或查找最大元素。
+* filter 和 map 等操作是无状态的，它们并不存储任何状态。 reduce 等操作要存储状态才能计算出一个值。 sorted 和 distinct 等操作也要存储状态，因为它们需要把流中的所有元素缓存起来才能返回一个新的流。这种操作称为有状态操作。
+* 流有三种基本的原始类型特化： IntStream 、 DoubleStream 和 LongStream 。它们的操作也有相应的特化。
+* 流不仅可以从集合创建，也可从值、数组、文件以及 iterate 与 generate 等特定方法创建。
+* 无限流是没有固定大小的流
+
+# 六 用流收集数据
+
+一般来说， Collector 会对元素应用一个转换函数，并将结果累积在一个数据结构中，从而产生这一过程的最终输出。
+
+预定义收集器的功能，也就是那些可以从 Collectors类提供的工厂方法（例如 groupingBy ）创建的收集器。它们主要提供了三大功能：
+
+* 将流元素归约和汇总为一个值
+* 元素分组
+* 元素分区
+
+![Collectors 类的静态工厂方法](..\Image\Java8实战\Collectors 类的静态工厂方法.jpg)
+
+![Collectors 类的静态工厂方法2](..\Image\Java8实战\Collectors 类的静态工厂方法2.jpg)
+
+Collector接口的声明：
+
+1. 建立新的结果容器：supplier方法
+2. 将元素添加到结果容器： accumulator 方法
+3. 对结果容器应用最终转换： finisher 方法
+4. 合并两个结果容器： combiner 方法
+5. characteristics 方法
+
+ characteristics 会返回一个不可变的 Characteristics 集合，它定义了收集器的行为——尤其是关于流是否可以并行归约，以及可以使用哪些优化的提示。Characteristics 是一个包含三个项目的枚举。
+
+* UNORDERED ——归约结果不受流中项目的遍历和累积顺序的影响。
+* CONCURRENT —— accumulator 函数可以从多个线程同时调用，且该收集器可以并行归约流。如果收集器没有标为 UNORDERED ，那它仅在用于无序数据源时才可以并行归约。
+* IDENTITY_FINISH ——这表明完成器方法返回的函数是一个恒等函数，可以跳过。这种情况下，累加器对象将会直接用作归约过程的最终结果。这也意味着，将累加器 A 不加检查地转换为结果 R 是安全的。
+
+小结：
+
+* collect 是一个终端操作，它接受的参数是将流中元素累积到汇总结果的各种方式（称为收集器）。
+* 预定义收集器包括将流元素归约和汇总到一个值，例如计算最小值、最大值或平均值。
+* 预定义收集器可以用 groupingBy 对流中元素进行分组，或用 partitioningBy 进行分区。
+* 收集器可以高效地复合起来，进行多级分组、分区和归约。
+* 你可以实现 Collector 接口中定义的方法来开发你自己的收集器。
