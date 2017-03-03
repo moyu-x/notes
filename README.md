@@ -11,7 +11,6 @@
 5. 《图解TCP/IP》
 6. 《实战Java高并发程序设计》
 7. 《Java函数式编程》
-8. Spring boot学习笔记
 
 # 笔记目录
 
@@ -36,6 +35,7 @@
 1. [《Spring实战（第四版）》](/Spring/Spring实战（第四版）.md)
 2. [《Spring入门经典》](/Spring/Spring入门经典.md)
 3. [Spring4学习](/Spring/Spring4学习.md)
+4. [Spring boot笔记——基于程序员DD的博客](Spring/Spring boot.md)
 
 ## Other
 
