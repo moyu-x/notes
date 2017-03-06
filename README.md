@@ -5,12 +5,11 @@
 目前为止还未进行笔记整理的书籍为：
 
 1. 《鸟哥的Linux私房菜》
-2. 《世界是数字的》
-3. 《程序员的思维训练：开发认知潜能的九堂课》
-4. 《程序员修炼之道 从小工到专家》
-5. 《图解TCP/IP》
-6. 《实战Java高并发程序设计》
-7. 《Java函数式编程》
+2. 《程序员的思维训练：开发认知潜能的九堂课》
+3. 《程序员修炼之道 从小工到专家》
+4. 《图解TCP/IP》
+5. 《实战Java高并发程序设计》
+6. 《Java函数式编程》
 
 # 笔记目录
 
@@ -45,4 +44,5 @@
 4. [《Head First HTML与CSS》](/Other/Head Frist HTML 与 CSS.md)
 5. [《设计模式:可复用面向对象软件的基础》](/设计模式可复用面向对象软件的基础.md)
 6. [《Java Persistence with MyBatis 3》](/Other/Java Persistence with MyBatis 3.md)
+7. [《世界是数字的》](/Other/世界是数字的.md)
 
