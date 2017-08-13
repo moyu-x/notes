@@ -125,6 +125,8 @@ Jinja2 中的条件语句格式为 `{% if condition %}...{% else %}...{% endif %
 
 # 第五章 数据库
 
+SQL 数据库擅于用高效且紧凑的形式存储结构化数据。这种数据库需要花费大量精力保证数据的一致性。 NoSQL 数据库放宽了对这种一致性的要求，从而获得性能上的优势。 
+
 选择数据库时候应该考虑的因素：
 
 * 易用性
@@ -132,6 +134,28 @@ Jinja2 中的条件语句格式为 `{% if condition %}...{% else %}...{% endif %
 * 可移植性
 
 更新表的更好方法是使用数据库迁移框架。源码版本控制工具可以跟踪源码文件的变化，类似地，数据库迁移框架能跟踪数据库模式的变化，然后增量式的把变化应用到数据库中。
+
+## SQLAlchemy 
+
+程序使用的数据库 URL 必须保存到 Flask 配置对象的` SQLALCHEMY_DATABASE_URI` 键中。配置对象中还有一个很有用的选项， 即 `SQLALCHEMY_COMMIT_ON_TEARDOWN` 键，将其设为 True时，每次请求结束后都会自动提交数据库中的变动。 
+
+SQLAlchemy 会使用一个默认名字，但默认的表名没有遵守使用复数形式进行命名的约定，所以最好由我们自己来指定表名。 
+
+![最常用的SQLAlchemy列类型](../Image/flask_web/最常用的SQLAlchemy列类型.png)
+
+![最常使用的SQLAlchemy列选项](../Image/flask_web/最常使用的SQLAlchemy列选项.png)
+
+![常用的SQLAlchemy关系选项1](../Image/flask_web/常用的SQLAlchemy关系选项1.png)
+
+![常用的SQLAlchemy关系选项2](../Image/flask_web/常用的SQLAlchemy关系选项2.png)
+
+数据库会话能保证数据库的一致性。提交操作使用原子方式把会话中的对象全部写入数据库。如果在写入会话的过程中发生了错误， 整个会话都会失效。如果你始终把相关改动放在会话中提交，就能避免因部分更新导致的数据库不一致性 。
+
+![常用的SQLAlchemy查询过滤器](../Image/flask_web/常用的SQLAlchemy查询过滤器.png)
+
+![最常使用的SQLAlchemy查询执行函数](../Image/flask_web/最常使用的SQLAlchemy查询执行函数.png)
+
+
 
 # 第七章 大型程序的结构
 
