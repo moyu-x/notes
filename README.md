@@ -34,15 +34,15 @@
 1. [《Spring实战（第四版）》](/Spring/Spring实战（第四版）.md)
 2. [《Spring入门经典》](/Spring/Spring入门经典.md)
 3. [Spring4学习](/Spring/Spring4学习.md)
-4. [Spring boot笔记——基于程序员DD的博客](Spring/Spring boot.md)
+4. [Spring boot笔记——基于程序员DD的博客](Spring/Springboot.md)
 
 ## Other
 
 1. [《架构探险》](/Other/架构探险.md)
 2. [《编码：隐匿在计算机硬件背后的语言》](/Other/编码：隐匿字计算机硬件背后的语言.md)
 3. [《Mybatis官方文档学习笔记》](/Other/Mybatis.md)
-4. [《Head First HTML与CSS》](/Other/Head Frist HTML 与 CSS.md)
+4. [《Head First HTML与CSS》](/Other/HeadFristHTMLAndCSS.md)
 5. [《设计模式:可复用面向对象软件的基础》](/设计模式可复用面向对象软件的基础.md)
-6. [《Java Persistence with MyBatis 3》](/Other/Java Persistence with MyBatis 3.md)
+6. [《Java Persistence with MyBatis 3》](/Other/JavaPersistencewithMyBatis3.md)
 7. [《世界是数字的》](/Other/世界是数字的.md)
 
