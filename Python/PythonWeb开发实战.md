@@ -74,7 +74,7 @@ Pandas包含三种数据结构：
 3. 选择解析HTML的方式
 4. 使用Refer
 
-使用`fake-useragent `实现随机生成UA：
+使用`fake-useragent`实现随机生成UA：
 
 ```python
 # 安装，在使用的时候可能需要将提供的UA缓存下来
@@ -87,3 +87,38 @@ ua = UserAgent()
 ua.random
 
 ```
+
+## 第十四章
+
+标准库模块：
+
+1. errno精确使用对应的错误类型，更精确地做异常处理
+2. subprocess取代一些系统操作的函数
+3. contextlib实现上下文管理
+4. glob用来匹配UNIX风格的路径名字的模块
+5. operator是一个内建的函数式接口
+6. functools模块中包含了一系列操作其他函数的工具
+7. collections模块包含了5个高性能的数据类型： `Conter`、`deque`、`defaultdict`、`OrderedDict`、`namedtuple`
+
+数据检查有EAFP和LBYL两种编程风格：
+
+1. LBYL：Lock Before You Leap，即事先检查，通过使用if语句把错误输入转化成合理的用法或者返回错误信息
+2. EAFP： Easier to Ask Forgiveness than Permission，即不检查，出了问题由异常处理来处理
+
+## 第十五章
+
+开发中的一些经验：
+
+1. 确定需求后再做
+2. 先验证那些可能实现不了的想法
+3. 优先级管理
+4. 及时反馈
+5. 合理的项目人员配比
+6. 尽量不要发太大的PR
+
+保持合理的项目结构
+
+1. 层次不可太深
+2. 层次也不能太平
+3. 善用蓝图
+4. 在业务发展的过程中不间断的进行代码重构工作
