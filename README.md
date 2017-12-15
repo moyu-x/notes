@@ -49,6 +49,10 @@
 6. [《Java Persistence with MyBatis 3》](/Other/JavaPersistencewithMyBatis3.md)
 7. [《世界是数字的》](/Other/世界是数字的.md)
 
+### 网络
+
+1. [《图解HTTP》](/network/图解HTTP.md)
+
 ## 附注
 
 在这里的笔记中，没有在80格的位置进行换行。
