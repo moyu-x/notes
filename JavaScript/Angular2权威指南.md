@@ -88,3 +88,23 @@ Angular不要求使用指定的数据模型库
 3. 在适当的时候，通过`EventEmitter`触发事件
 
 `host`配置可以在宿主元素上配置元素属性
+
+第四章 内置指令
+
+如果希望根据一个条件来决定显示或隐藏一个元素，可以使用`ngIf`指令，如果只是想改变一个元素的CSS可见性，就应该使用`ngStyle`或`class`指令
+
+`ngSwitch`指令背后的思想：对表达式进行一次求值，然后根据其结果来决定如何显示指令内的嵌套元素
+
+使用`ngSwitchCase`指令描述已知结果
+
+使用`ngSwitchDefault`指令处理所有其他未知情况
+
+使用`ngStyle`指令可以通过Angular表达式给特定的DOM元素设定CSS属性
+
+`ngClass`指令在HTML模板中用ngClass属性来表示，能动态设置和改变一个给定的DOM元素的CSS类
+
+JavaScript对想不允许字面量的键值出现连字符
+
+`ngFor`指令的任务是重复一个给定的DOM元素，每次重复都会从数组中取一个不同的值
+
+告诉Angular不要编译或者绑定页面中的某个特殊部分时候，要使用`ngNodbindable`
