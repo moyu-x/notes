@@ -108,3 +108,45 @@ JavaScript对想不允许字面量的键值出现连字符
 `ngFor`指令的任务是重复一个给定的DOM元素，每次重复都会从数组中取一个不同的值
 
 告诉Angular不要编译或者绑定页面中的某个特殊部分时候，要使用`ngNodbindable`
+
+## 第五章
+
+在Angular中，经常将一个类以属性的形式附加DOM上
+
+`FormControl`代表单一的输入字段，它封装了这些字段的值和状态
+
+`FormGroup`则可以位一组`FormControl`提供总包接口
+
+`FormGroup`和`FormControl`都继承字同一个祖先`AbstractControl`
+
+`NgForm`提供了两项重要的功能：
+
+1. 一个名叫`ngForm`的`FormGroup`对象
+2. 一个输出事件`ngSubmit`
+
+如果要绑定一个现有的`FormGroup`和`FormControl`，使用：
+
+* ngForm
+* ngModel
+
+如果要绑定一个现有的`FormGroup`和`FormControl`，使用：
+
+* formGroup
+* formControl
+
+使用验证器`Validators`来检查用户输入的数据格式
+
+1. 为`FormControl`对象指定一个验证器
+2. 在视图中检查验证器状态，并据此采取行动
+
+一个验证器：
+
+1. 接收一个`FormControl`作为输入
+2. 当验证失败时，会返回一个`StringMap<string, boolean>`对象
+
+利用`Validators.compose`来实现整合多个验证
+
+想监听控件变化，要：
+
+1. 通过调用`control.valueChanges`访问到这个`EventEmitter`
+2. 使用`.subscribe`方法添加一个监听器
