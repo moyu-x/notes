@@ -150,3 +150,11 @@ JavaScript对想不允许字面量的键值出现连字符
 
 1. 通过调用`control.valueChanges`访问到这个`EventEmitter`
 2. 使用`.subscribe`方法添加一个监听器
+
+## 第六章
+
+在JavaScriptn中，通常有3中处理异步代码的方式：
+
+1. callback
+2. promise
+3. observale
