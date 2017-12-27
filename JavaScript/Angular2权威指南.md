@@ -158,3 +158,40 @@ JavaScript对想不允许字面量的键值出现连字符
 1. callback
 2. promise
 3. observale
+
+## 第七章
+
+锚标记的传统作用是直接链接到所在的网页的其他位置，并让浏览器滚动到定义该锚标记元素所在的位置。
+
+使用HTML5路由模式的时候，需要注意两点：
+
+1. 并非所有的浏览器都支持HTML路由模式
+2. 服务器必须支持基于HTML5的路由
+
+主要使用三种主要部件来配置Angular路由：
+
+* Routes:描述了应用程序支持的路由配置
+* RouterOutlet:这是一个“占位符”，用于告诉Angular要把每个路由的内容放在哪里
+* RouterLink指令:用于创建各种路由
+
+使用`RouterLink`指令可以在不重载页面的情况下链接路由
+
+`<base href="/">`，该标签的作用是使用相对路径来告知浏览器去哪里查找图片和其他资源，Angular的路由也依赖这个标签来确定如何构建他的路由信息。当开发这不能查看head部分时候，可以使用`APP_BASE_HREF`提供者来声明应用程序的基准路径
+
+RouterOutlet指令可以指定Angular在页面的什么地方渲染各种路由的内容
+
+`router-outlet`元素标示了各个路由组件的内容应该在哪里被渲染
+
+Angular的默认策略位`PathLocationStrategy`，也就是HTML5路由，如果使用HTML5路由，那么URL将会成为普通的路径，而非使用锚点标记或者锚标签
+
+路由参数`/route/:param`，为了使用路由参数，需要导入ActivitedRoute，接下来将ActivatedRoute注入组件的构造函数中
+
+如果想要撰写优质，容易测试的代码，就要最小化构建副作用
+
+应该将组件初始化代码放到一个钩子函数中
+
+`localStorage`是HTML5提供的键值对，用来在浏览器中保存信息
+
+使用`canActivate`接口的守卫类
+
+Angular会优先使用具体路由
