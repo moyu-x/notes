@@ -131,3 +131,46 @@ props传递数据、events触发事件和slot内容分发就构成了Vue组件�
 使用特殊的元素`<component>`来动态的挂载不同的组件，使用is特性来选择要挂载的组件
 
 Vue提供了`Vue.extend`和`$mount`两个方法来手动挂载一个实例
+
+`watch`选项用来监听某个prop或data的改变，当它们发生变化时，就会触发watch配置的函数，从而完成我们的业务逻辑
+
+一个Vue组件的API只来自props、events和slots，确定好这3部分的命名、规则，剩下的逻辑即使第一版没有做好，后续也可以迭代完善
+
+## 第八章
+
+自定义指令选项是由几个钩子函数组成的，每个都是可选的：
+
+- bind： 只调用一次，指令第一次绑定到元素时调用，用这个钩子函数可以定义一个绑定时执行一次的初始化动作
+- inserted：被绑定元素插入父节点时调用
+- update：被绑定元素所在模板更新时调用，而不论绑定值是否变换。通过比较更新前后的绑定值，可以忽略不必要的模板更新
+- componentUpdated：被绑定的元素所在的模板完成一次更新周期时调用
+- unbind：只调用一次，指令与元素解绑时调用
+
+每个钩子函数都有介个参数可用：
+
+- el：指令绑定的元素，可以用来直接操作DOM
+- binding：一个对象，包含一下属性
+  - name：指令名，不包括v-前缀
+  - value：指令绑定的值
+  - oldValue：指令绑定的前一个值
+  - expression：绑定值的字符串形式
+  - arg：传给指令的参数
+  - modifiers：一个包含修饰符的对象
+- vnode：Vue编译生成的虚拟节点
+- oldVnode：上一个虚拟节点，仅在update和componentUpdated钩子中可用
+
+在编写自定义指令时，给DOM绑定一次性事件等初始动作，在bind钩子内完成，同时要在unbind内解除相关绑定。在自定义指令中，理论上可以操作任意DOM，但这又违背了Vue.js的初衷，所以对于大幅度的DOM变动，应该使用组件。
+
+## 第九章
+
+Virtual Dom并不是真正意义上的DOM，而是一个轻量级的Javascript对象，在状态发生变化时，Virtual Dom会进行Diff运算，来更新只需要被替换的DOM，而不是全部重绘
+
+在Vue.js2中，Virtual DOM时通过一种VNode类表达的，每个DOM元素或组件都对应一个VNode对象
+
+Render函数通过createElement参数来创建Virtual Dom，结构精简了很多
+
+createElement构成了Vue Virtual DOM的模板，第一个参数必选，可以是一个HTML标签，也可以是一个组件或函数；第二个是可选参数，数据对象，在template中使用；第三个是子节点，也是可选参数
+
+
+
+ 
