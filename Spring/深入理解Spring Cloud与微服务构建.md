@@ -42,5 +42,13 @@ IRule默认有7个实现：
 6. WeightedResponseTimeRule:根据响应时间分配一个权重，权重越低，被选择的可能性就越低
 7. ZoneAvoidanceRule:根据服务的zone区域和可用性来轮询选择
 
+Ribbon的负载均衡主要是通过`LoadBalancerClient`来实现的，`LoadBalancerClient`交给了`ILoadBalancer`来处理，其通过配置`IRule`、`IPing`等，向`EurekaClient`获取服务注册信息并且没10s向其发送信息以确定是否需要更新注册信息，最后根据策略进行负载均衡。
+
+# 第七章
+
+Feign Client默认的配置类是FeignClientConfiguration,重写其中的Bean可以达到自定义配置的目的
+
+Feign是一个伪Java Http客户端，Feign不做任何处理请求，其通过注解生成Request模板，从而简化Http的API开发
+
 
 
