@@ -1,4 +1,11 @@
+---
+title: Python Web 编程实战
+footer: MIT Licensed | Copyright © 2018-present idwangmo
+prev: /
+---
 # Python Web编程实战
+
+[[toc]]
 
 ## 第二章
 
@@ -85,7 +92,6 @@ from fake_useragent import UserAgent
 
 ua = UserAgent()
 ua.random
-
 ```
 
 ## 第十四章
