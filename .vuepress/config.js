@@ -4,7 +4,7 @@ module.exports = {
     serviceWorker: true,
     evergreen: true,
     themeConfig: {
-      lastUpdated: 'Last Updated',
+      lastUpdated: '上次修改',
       searchMaxSuggestions: 10,
       repo: 'idwangmo/note',
       repoLabel: 'Github',
@@ -12,7 +12,14 @@ module.exports = {
       siderbar: 'auto',
       nav: [
         { text: "主页", link: "https://www.mosdev.xyz"}
-      ]
+      ],
+      configureWebpack: {
+        resolve: {
+          alias: {
+            '@img': 'static/image'
+          }
+        }
+      }
     },
     markdown: {
       lineNumbers: true
