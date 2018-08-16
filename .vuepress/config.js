@@ -11,7 +11,7 @@ module.exports = {
       docsBranch: 'vuepress',
       siderbar: 'auto',
       nav: [
-        { text: "主页", link: "https://www.mosdev.xyz"}
+        { text: "墨语的后花园", link: "https://www.mosdev.xyz"}
       ],
       configureWebpack: {
         resolve: {
