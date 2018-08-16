@@ -2,10 +2,9 @@
 title: Python Web 编程实战
 footer: MIT Licensed | Copyright © 2018-present idwangmo
 prev: /
+sidebar: auto
 ---
 # Python Web编程实战
-
-[[toc]]
 
 ## 第二章
 
