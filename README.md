@@ -15,3 +15,7 @@ next: false
 ## Java
 
 1. [Cloud Native Java](/java/cloud_native_java.md)
+
+## Go
+
+1 [Go语言实战](/go/go_in_action.md)
