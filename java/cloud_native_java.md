@@ -65,3 +65,20 @@ Spring允许映射所有的配置到POJO类似的配置当中
 Spring Cloud Bus支持刷新多个应用程序上下文实例
 
 Spring Cloud Stream支持不同的消息技术
+
+## 第四章
+
+`@SpringBootTest`注解将指明此类是一个Spring Boot的测试类，并且提供了扫描`ContextConfiguration`的支持，并且告诉如何加载ContextConfiguration。当没有自定义的配置类被扫描到的时候，将会加载在Spring框架包中的配置文件。
+
+在集成测试执行的过程中任何测试都需要访问Spring context，而单元测试的不需要Spring context。
+
+在Spring boot程序中，我们需要部署`.jar`文件，所以`@SpringBooTest`支持`webEnvironment`属性去描述Spring boot在程序运行的时候应该怎么配置嵌入式的容器
+
+`@JsonTest`注解运行仅仅是测试JSON的序列化和反序列化。
+
+`@DataJpaTest`提供了在使用Sring data JPA的项目中进行测试方法。`TestEntityManager`提供了无需数据库就能与底层数据存储进行交互的方式。
+
+`@RestClientTest`注解可以将一个service注解一个实例以及将一个RestTemplate注册为自动测试配置的一部分
+
+契约测试始终隐藏生产者API的实现
+
