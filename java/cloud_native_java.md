@@ -81,4 +81,3 @@ Spring Cloud Stream支持不同的消息技术
 `@RestClientTest`注解可以将一个service注解一个实例以及将一个RestTemplate注册为自动测试配置的一部分
 
 契约测试始终隐藏生产者API的实现
-
