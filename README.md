@@ -1,12 +1,12 @@
 ---
 home: true
-title: 补全目录
+title: 日志
 footer: MIT Licensed | Copyright © 2018-present idwangmo
 sidebar: auto
 prev: false
 next: false
 ---
-# 补全目录
+# 日志目录
 
 ## Python
 
@@ -19,3 +19,7 @@ next: false
 ## Go
 
 1 [Go语言实战](/go/go_in_action.md)
+
+## 日常
+
+1. [2018-09-11](/daily/20180911.md)

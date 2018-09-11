@@ -1,6 +1,6 @@
 module.exports = {
-    title: '墨语笔记补完计划',
-    description: '墨语笔记补完计划',
+    title: '墨语笔记补完',
+    description: '日常读书笔记、每日的文章阅读重要部分注记录',
     serviceWorker: true,
     evergreen: true,
     themeConfig: {
@@ -8,10 +8,10 @@ module.exports = {
       searchMaxSuggestions: 10,
       repo: 'idwangmo/note',
       repoLabel: 'Github',
-      docsBranch: 'vuepress',
+      docsBranch: 'master',
       siderbar: 'auto',
       nav: [
-        { text: "墨语的后花园", link: "https://www.mosdev.xyz"}
+        { text: "墨语的后花园", link: "https://www.idwangmo.top"}
       ],
       configureWebpack: {
         resolve: {
