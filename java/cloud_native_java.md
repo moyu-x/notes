@@ -81,3 +81,9 @@ Spring Cloud Stream支持不同的消息技术
 `@RestClientTest`注解可以将一个service注解一个实例以及将一个RestTemplate注册为自动测试配置的一部分
 
 契约测试始终隐藏生产者API的实现
+
+## 第五章
+
+Spring session是Servert HTTP Session API的用SPI处理同步的插入式替换。
+
+Servlet API要求对象必须重新实现Java的序列化以此来重写HTTP Session。
