@@ -18,7 +18,8 @@ next: false
 
 ## Go
 
-1 [Go语言实战](/go/go_in_action.md)
+1. [Go语言实战](/go/go_in_action.md)
+2. [Build Web Application with Golang](/go/build-web-application-with-golang.md)
 
 ## 日常
 

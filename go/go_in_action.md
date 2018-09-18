@@ -2,6 +2,7 @@
 title: Go语言实战
 footer: MIT Licensed | Copyright © 2018-present idwangmo
 prev: /
+next: ./build-web-application-with-golang
 sidebar: auto
 ---
 
@@ -82,5 +83,3 @@ go中有两种类型的接受着：值接受着和指针接受着
 ### 标识符的公开性质
 
 main 函数能够接受这个值并创建一个未公开的类型的变量。要让这个行为可行，需要两个理由。第一，公开或者未公开的标识符，不是一个值。第二，短变量声明操作符，有能力捕获引用的类型，并创建一个未公开的类型的变量。永远不能显式创建一个未公开的类型的变量，不过短变量声明操作符可以这么做
-
-
