@@ -87,3 +87,24 @@ Spring Cloud Stream支持不同的消息技术
 Spring session是Servert HTTP Session API的用SPI处理同步的插入式替换。
 
 Servlet API要求对象必须重新实现Java的序列化以此来重写HTTP Session。
+
+## 第六章
+
+[REST成熟度模型](https://martinfowler.com/articles/richardsonMaturityModel.html)：
+
+0. The swamp of Pox
+1. Resource
+2. HTTP verbs
+3. Hypermedia controls
+
+基本上，使用例如Spring MVC或者Flask之类的框架的时候，已经处于第二个级别了
+
+servlet容器维护着一个HTTP请求的线程池
+
+`@ExceptionHandler`处理程序与可能抛出异常的处理程序位于同一个控制器组件中。
+
+错误应该唯一且简明地指示客户端的错误状况并支持自然语言，并且最终解决或着解释错误的发生。
+
+Spring HATEOAS提供了VndError和VndErrors来对个别的错误或者错误集进行封装
+
+

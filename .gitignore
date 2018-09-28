@@ -1,2 +1,5 @@
 # 构建出来的静态文件不需要提交
 .vuepress/dist/
+
+# vnote的备份文件不提交
+*.vswp
