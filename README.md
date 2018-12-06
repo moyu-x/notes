@@ -18,14 +18,14 @@ next: false
 
 ## Go
 
-1. [Go语言实战](/go/go_in_action.md)
+1. [Go 语言实战](/go/go_in_action.md)
 2. [Build Web Application with Golang](/go/build-web-application-with-golang.md)
 
 ## 软件工程
 
-1. [硝烟中的Scrum和xp](/software/scrum-vs-xp.md)
+1. [硝烟中的 Scrum 和 xp](/software/scrum-vs-xp.md)
 
 ## 日常
 
-1. [2018-09-11(英语，微服务，git提交)](/daily/20180911.md)
-2. [2018-09-16(c编译器)](/daily/20180916.md)
+1. [2018-09-11（英语，微服务，git 提交）](/daily/20180911.md)
+2. [2018-09-16(c 编译器）](/daily/20180916.md)
