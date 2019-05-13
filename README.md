@@ -6,7 +6,6 @@ sidebar: auto
 prev: false
 next: false
 ---
-# 日志目录
 
 ## Python
 
@@ -32,3 +31,7 @@ next: false
 2. [2018-09-16(c 编译器）](/daily/20180916.md)
 3. [Git 提交密码管理](/daily/20190126.md)
 4. [Spring boot tip](/daily/20190204.md)
+
+## tips
+
+1. [SSH 使用问题汇总](/tips/ssh-config.md)
