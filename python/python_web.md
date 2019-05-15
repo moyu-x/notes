@@ -2,9 +2,9 @@
 title: Python Web 编程实战
 footer: MIT Licensed | Copyright © 2018-present idwangmo
 prev: /
+next: flask-web
 sidebar: auto
 ---
-# Python Web 编程实战
 
 ## 第二章
 
@@ -107,7 +107,7 @@ ua.random
 4. glob 用来匹配 UNIX 风格的路径名字的模块
 5. operator 是一个内建的函数式接口
 6. functools 模块中包含了一系列操作其他函数的工具
-7. collections 模块包含了 5 个高性能的数据类型： 
+7. collections 模块包含了 5 个高性能的数据类型：
 `Conter`、`deque`、`defaultdict`、`OrderedDict`、`namedtuple`
 
 数据检查有 EAFP 和 LBYL 两种编程风格：

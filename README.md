@@ -10,6 +10,8 @@ next: false
 ## Python
 
 1. [Python Web 开发实战](/python/python_web.md)
+2. [Flask Web 编程开发](/python/flask-web.md)
+3. [Python 编程从入门到实战](/python/python-programming-getting-started.md)
 
 ## Java
 
@@ -35,3 +37,4 @@ next: false
 ## tips
 
 1. [SSH 使用问题汇总](/tips/ssh-config.md)
+2. [Jooq 使用汇总](/tips/jooq-tips.md)

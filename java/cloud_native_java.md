@@ -5,8 +5,6 @@ prev: /
 sidebar: auto
 ---
 
-# Cloud Native Java
-
 ## 第一章
 
 ![Cloud computing stack](./imgs/cloud_native_java/cloud_computing_stack.png)
@@ -79,7 +77,7 @@ Spring Cloud Stream 支持不同的消息技术
 `ContextConfiguration`的支持，并且告诉如何加载 ContextConfiguration。当没有自定
 义的配置类被扫描到的时候，将会加载在 Spring 框架包中的配置文件。
 
-在集成测试执行的过程中任何测试都需要访问 Spring context，而单元测试的不需要 
+在集成测试执行的过程中任何测试都需要访问 Spring context，而单元测试的不需要
 Spring context。
 
 在 Spring boot 程序中，我们需要部署`.jar`文件，所以`@SpringBooTest`支持`webEnvironment`
@@ -90,7 +88,7 @@ Spring context。
 `@DataJpaTest`提供了在使用 Sring data JPA 的项目中进行测试方法。`TestEntityManager`
 提供了无需数据库就能与底层数据存储进行交互的方式。
 
-`@RestClientTest`注解可以将一个 service 注解一个实例以及将一个 RestTemplate 
+`@RestClientTest`注解可以将一个 service 注解一个实例以及将一个 RestTemplate
 注册为自动测试配置的一部分
 
 契约测试始终隐藏生产者 API 的实现
