@@ -37,4 +37,6 @@ next: false
 ## tips
 
 1. [SSH 使用问题汇总](/tips/ssh-config.md)
-2. [Jooq 使用汇总](/tips/jooq-tips.md)
+2. [Jooq 使用问题汇总](/tips/jooq-tips.md)
+3. [Feign 使用问题汇总](/tips/feign-tips.md)
+4. [Linux 使用问题汇总](/tips/linux-tips.md)
