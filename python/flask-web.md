@@ -1,7 +1,7 @@
 ---
 title: Flask Web 开发
 footer: MIT Licensed | Copyright © 2019-present idwangmo
-prev: ./python-web
+prev: ./python_web
 next: ./python-programming-getting-started
 sidebar: auto
 ---

@@ -2,7 +2,7 @@
 title: Python Web 编程实战
 footer: MIT Licensed | Copyright © 2018-present idwangmo
 prev: /
-next: flask-web
+next: ./flask-web.md
 sidebar: auto
 ---
 
