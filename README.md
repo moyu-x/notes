@@ -17,6 +17,7 @@ next: false
 
 1. [Cloud Native Java](/java/cloud_native_java.md)
 2. [Spring Cloud 微服务实战](/java/spring-cloud-docker.md)
+3. [Java8 实战](/java/java8-in-action.md)
 
 ## Go
 
