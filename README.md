@@ -7,6 +7,10 @@ prev: false
 next: false
 ---
 
+## 博客收集
+
+1. [Blog 收集](/blog-collection.md)
+
 ## Python
 
 1. [Python Web 开发实战](/python/python_web.md)
