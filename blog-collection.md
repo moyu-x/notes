@@ -1,5 +1,5 @@
 ---
-title: 博客汇总
+title: 博客收集汇总
 prev: false
 next: false
 sidebar: auto
@@ -14,3 +14,17 @@ sidebar: auto
 ## Linux
 
 1. [Linuxer怎么直面内心的挣扎？](https://manateelazycat.github.io/opensource/business/2017/12/11/straight-to-the-heart.html)
+
+## 理论
+
+1. [Microservices](https://martinfowler.com/articles/microservices.html)
+2. [CircuitBreaker](https://martinfowler.com/bliki/CircuitBreaker.html) ) -- 在代码注释中找到的
+
+## Spring Cloud
+
+1. [Consul 使用手册](http://www.liangxiansen.cn/2017/04/06/consul/)
+
+## OAuth2
+
+1. [徐靖峰——Spring Security OAuth2](https://www.cnkirito.moe/categories/Spring-Security-OAuth2/)
+2. [Spring Cloud OAuth2 教程](https://www.jianshu.com/p/3427549a148a)

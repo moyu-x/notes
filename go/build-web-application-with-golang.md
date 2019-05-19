@@ -6,8 +6,6 @@ next: false
 sidebar: auto
 ---
 
-# Build Web Application with Golang
-
 ## 第一章
 
 `$GOPATH`目录约定有三个子目录：
