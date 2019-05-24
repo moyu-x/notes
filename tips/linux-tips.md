@@ -9,6 +9,6 @@ sidebar: auto
 
 修改`/etc/inputrc`文件，将`bell-style`设置为如下：
 
-``` bash
+```bash
 set bell-style none
 ```

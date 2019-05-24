@@ -11,7 +11,7 @@ sidebar: auto
 
 ### 修改代码方式
 
-``` java
+```java
     @Bean
     Logger.Level feignLoggerLevel() {
         return Logger.Level.FULL;
@@ -20,7 +20,7 @@ sidebar: auto
 
 ### 修改配文件方式
 
-``` yaml
+```yaml
 feign:
   client:
     config:

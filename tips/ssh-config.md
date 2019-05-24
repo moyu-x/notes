@@ -9,7 +9,7 @@ sidebar: auto
 
 这个时候在`~/.ssh/config`中加入如下的配置：
 
-``` bash
+```bash
 Host *
   ServerAliveInterval 120
   IPQoS=throughput

@@ -18,7 +18,8 @@ sidebar: auto
 ## 理论
 
 1. [Microservices](https://martinfowler.com/articles/microservices.html)
-2. [CircuitBreaker](https://martinfowler.com/bliki/CircuitBreaker.html) ) -- 在代码注释中找到的
+2. [CircuitBreaker](https://martinfowler.com/bliki/CircuitBreaker.html) -- 在代码注释中找到的
+3. [Dapper, a Large-Scale Distributed Systems Tracing Infrastructure](https://research.google.com/archive/papers/dapper-2010-1.pdf)
 
 ## Spring Cloud
 
@@ -28,3 +29,7 @@ sidebar: auto
 
 1. [徐靖峰——Spring Security OAuth2](https://www.cnkirito.moe/categories/Spring-Security-OAuth2/)
 2. [Spring Cloud OAuth2 教程](https://www.jianshu.com/p/3427549a148a)
+
+## 网络
+
+1. [Epoll 的本质是什么？](https://my.oschina.net/editorial-story/blog/3052308)
