@@ -16,3 +16,16 @@ siderbar: auto
 ```bash
 touch main.go
 ```
+
+## VSCode 提示扩展安装失败
+
+在`VSCode`中安装`Go`的扩展后，会提示安装一些以来组建，这可以参考[官方的WIKI](https://github.com/Microsoft/vscode-go/wiki/Go-tools-that-the-Go-extension-depends-on)来进行安装。在做完这些后，有可能会提示`dlv`和`gocode-mod`安装失败，这个时候`dlv`可以直接在发行版中找到(我用的是ArchLinux)，但是`gocode-mod`安装失败主要是名称问题，这个时候，执行如下命令就可以的，虽然这操作有点迷：
+
+```bash
+go get -u -v github.com/ianthehat/godef
+go get -u -v github.com/stamblerre/gocode
+
+# and in $GOPATH/bin use the first folder of the gopath, if there are several.....
+cp godef godef-gomod
+cp gocode gocode-gomod 
+```
