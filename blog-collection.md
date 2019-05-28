@@ -37,3 +37,13 @@ sidebar: auto
 ## WSL
 
 1. [Dev on Windows with WSL](https://spencerwoo.com/dowww)
+
+## Ohter
+
+1. [客户端单周发版下的多分支自动化管理与实践](https://tech.meituan.com/2019/01/10/traffic-git-branch-management.html)
+
+2. [Spring Boot引起的“堆外内存泄漏”排查及经验总结](https://tech.meituan.com/2019/01/03/spring-boot-native-memory-leak.html)
+
+3. [数据库智能运维探索与实践](https://tech.meituan.com/2018/12/13/intelligent-operation-practice-in-meituan.html)
+
+4. [美团即时物流的分布式系统架构设计](https://tech.meituan.com/2018/11/22/instant-logistics-distributed-system-architecture.html)
