@@ -176,3 +176,7 @@ servlet 容器维护着一个 HTTP 请求的线程池
 1. 令牌桶算法
 
 2. 漏桶算法
+
+在`Web`层中，`Spring Security`会以一个单独的`javax.servlet.Filter`存在(从`Web`容器角度来看)，然后委托给`Filter`实例的其他虚拟链
+
+`UserDetailsService`实现的约定：给定一个字符串`username`，返回一个`UserDetails`实现，或者抛出一个`UsernameNotFoundException`异常，在任何情况下，它都不应该返回`null`

@@ -38,7 +38,7 @@ sidebar: auto
 
 1. [Dev on Windows with WSL](https://spencerwoo.com/dowww)
 
-## Ohter
+## 美团技术沙龙
 
 1. [客户端单周发版下的多分支自动化管理与实践](https://tech.meituan.com/2019/01/10/traffic-git-branch-management.html)
 
@@ -47,3 +47,17 @@ sidebar: auto
 3. [数据库智能运维探索与实践](https://tech.meituan.com/2018/12/13/intelligent-operation-practice-in-meituan.html)
 
 4. [美团即时物流的分布式系统架构设计](https://tech.meituan.com/2018/11/22/instant-logistics-distributed-system-architecture.html)
+
+5. [美团容器平台架构及容器技术实践](https://tech.meituan.com/2018/11/15/docker-architecture-and-evolution-practice.html)
+
+6. [全链路压测平台（Quake）在美团中的实践](https://tech.meituan.com/2018/09/27/quake-introduction.html)
+
+7. [SQL解析在美团的应用](https://tech.meituan.com/2018/05/20/sql-parser-used-in-mtdp.html)
+
+8. [美团广告实时索引的设计与实现](https://tech.meituan.com/2018/05/11/adp-rtidx-ls.html)
+
+9. [Lego-美团接口自动化测试实践](https://tech.meituan.com/2018/01/09/lego-api-test.html)
+
+10. [领域驱动设计在互联网业务开发中的实践](https://tech.meituan.com/2017/12/22/ddd-in-practice.html)
+
+11. [Vuex框架原理与源码分析](https://tech.meituan.com/2017/04/27/vuex-code-analysis.html)
