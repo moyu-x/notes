@@ -9,7 +9,7 @@ sidebar: auto
 
 在`build.gradle`文件中加入如下配置：
 
-``` groovy
+```groovy
 repositories {
     maven {url 'http://maven.aliyun.com/nexus/content/groups/public/'}
 }

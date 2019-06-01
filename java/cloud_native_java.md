@@ -180,3 +180,9 @@ servlet 容器维护着一个 HTTP 请求的线程池
 在`Web`层中，`Spring Security`会以一个单独的`javax.servlet.Filter`存在(从`Web`容器角度来看)，然后委托给`Filter`实例的其他虚拟链
 
 `UserDetailsService`实现的约定：给定一个字符串`username`，返回一个`UserDetails`实现，或者抛出一个`UsernameNotFoundException`异常，在任何情况下，它都不应该返回`null`
+
+如果我们添加一个`@EnableResourceServer`注解，将授权服务器配置为一个资源服务器，那么对于那些处理带访问令牌的`Spring MVC`处理器来说，`Spring Security OAuth`会自动为它们提供一个`java.security.Principal`对象，并且还会将其转换为资源服务器可以使用的`JSON`格式
+
+## 第九章
+
+

@@ -47,3 +47,4 @@ next: false
 4. [Linux 使用问题汇总](/tips/linux-tips.md)
 5. [Go 使用问题汇总](/tips/go-tips.md)
 6. [Spring boot 使用问题汇总](/tips/spring-boot-tips.md)
+7. [Kubernetes 的问题汇总](/tips/k8s-tips.md)

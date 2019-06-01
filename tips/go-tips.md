@@ -17,7 +17,7 @@ siderbar: auto
 touch main.go
 ```
 
-## VSCode 提示扩展安装失败
+## VSCode 提示扩展安装失败
 
 在`VSCode`中安装`Go`的扩展后，会提示安装一些以来组建，这可以参考[官方的WIKI](https://github.com/Microsoft/vscode-go/wiki/Go-tools-that-the-Go-extension-depends-on)来进行安装。在做完这些后，有可能会提示`dlv`和`gocode-mod`安装失败，这个时候`dlv`可以直接在发行版中找到(我用的是ArchLinux)，但是`gocode-mod`安装失败主要是名称问题，这个时候，执行如下命令就可以的，虽然这操作有点迷：
 
@@ -28,4 +28,17 @@ go get -u -v github.com/stamblerre/gocode
 # and in $GOPATH/bin use the first folder of the gopath, if there are several.....
 cp godef godef-gomod
 cp gocode gocode-gomod 
+```
+
+## Array 循环修改值的问题
+
+在`Go`语言中，`array`和`struct`都是值类型的，而`slice`、`map`、`chan`是引用类型，所以修改值会出现是把，这个最好的建议是使用`slice`替换`array`，如果是需要使用`array`并且修改值，这个时候需要进行如下操作：
+
+```go
+goArray := []GoArray{}
+
+// 修改值的方式
+for index := range goArray {
+    goArray[index].fieldA = value
+}
 ```
