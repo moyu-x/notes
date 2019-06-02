@@ -185,4 +185,53 @@ servlet 容器维护着一个 HTTP 请求的线程池
 
 ## 第九章
 
+良好的数据模型可以有效地传达软件中的业务需求
+
+领域驱动设计目的在解决问题是软件设计中的复杂性
+
+大多数数据仓储仅专注于提供最佳数据存储，而对可用性关注不足
+
+域类(domain class)是一个基本的类，其作为域数据模型，由一组专用字段组成，并根据域模型的设计，使用`public getter`和`setter`公开其内容
+
+通过使用`Repository`模式，数据消费着只需要关心违反约束条件的一类异常
+
+![Spring Data Commons](imgs\cloud_native_java\spring-data-commons.jpg)
+
+有界的上下文是将业务领域的一部分模块化为单独的统一模型的一种方式，每个有界的上下文可以有一组无关的概念，同时明确共享概念之间的联系
+
+通过在实体类上加上`@EntityListensers(AuditingEntityListener.class)`以及在配置类上加入`@EnableJpaAuduiting`来开启审计
+
+使用`MongoDB`进行审计的时候需要配置`AbstractMongoEventListenser`，并且需要一个基本的实体类，其他实体通过继承用于审计，下面是一个实例代码：
+
+```java
+/**
+ * 实体类.
+ */
+@Data
+public class BaseEntity {
+    private LocalDateTime lastModified;
+    private LocalDateTime createdAt;
+}
+
+/**
+ * 配置类.
+ */
+@Componet
+class MongoListenserConfig extends AbstarctMongoEventListenser<BaseEntity> {
+
+    @Override
+    public void onBeforeSave(BeforeSaveEvent(BaseEntity) entity) {
+        if (Objects.isNull(event.getSource().getCreatedAt())) {
+            event.getSource().setCreateAt(LocalDateTime.now());
+        }
+        
+        event.getSource().setLastModified(LocalDateTim.now());
+        super.onBeforeSave(event);
+    }
+   
+}
+```
+
+图数据库将数据库对象表示为节点和关系的连接图
+
 

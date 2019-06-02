@@ -2,7 +2,7 @@
 title: Go 使用问题汇总
 prev: false
 next: false
-siderbar: auto
+sidebar: auto
 ---
 
 ## 环境变量的问题
