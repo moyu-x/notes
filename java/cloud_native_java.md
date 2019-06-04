@@ -224,14 +224,22 @@ class MongoListenserConfig extends AbstarctMongoEventListenser<BaseEntity> {
         if (Objects.isNull(event.getSource().getCreatedAt())) {
             event.getSource().setCreateAt(LocalDateTime.now());
         }
-        
+
         event.getSource().setLastModified(LocalDateTim.now());
         super.onBeforeSave(event);
     }
-   
+
 }
 ```
 
 图数据库将数据库对象表示为节点和关系的连接图
+
+使用的分布式数据存储的好处是，多进程、应用程序和服务器能够使用相同的密钥对值进行并发操作。通常，要从多个应用程序执行此操作，需要在操作其值之前将某种形式的反序列化转换为语言支持的数据结构。
+
+`Spring Data Redis`实现了`Spring`框架的`CacheManager`的抽象
+
+确保仔细检查微服务架构中为资源配置的`TTL`到期时间
+
+## 第十章
 
 

@@ -20,6 +20,7 @@ sidebar: auto
 1. [Microservices](https://martinfowler.com/articles/microservices.html)
 2. [CircuitBreaker](https://martinfowler.com/bliki/CircuitBreaker.html) -- 在代码注释中找到的
 3. [Dapper, a Large-Scale Distributed Systems Tracing Infrastructure](https://research.google.com/archive/papers/dapper-2010-1.pdf)
+4. [What do you mean by “Event-Driven”?](https://martinfowler.com/articles/201701-event-driven.html)
 
 ## Spring Cloud
 
