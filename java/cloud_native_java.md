@@ -242,4 +242,24 @@ class MongoListenserConfig extends AbstarctMongoEventListenser<BaseEntity> {
 
 ## 第十章
 
+事件驱动的含义：
+
+* 事件通知：通过发送事件消息来通知其他系统其系统域的变化。消息的接收者不产生答复。源系统不期望应答，也不需要应答。事件通知是不可变的，这意味着事件消息的内容不应包含事件生成后修改的数据。
+
+* 携事件的状态转移：消息中不包含任何需要求接收方回调系统的数据。各式各样的事件消息中包括接收着处理事情所需的一切内容。
+
+* 事件溯源：事件溯源是对存储系统能够导致系统状态随事件变化的领域事件日志的实践。在这种情况下，可以从任何事件点重新播放事件以重建系统状态。
+
+`Spring Integration`的核心是`Spring`框架中的`MessageChannel`和`Message<T>`类型。`Message<T>`对象有一个`playload`和一组`header`，用来提供有关消息有效载荷的元数据。`Message<T>`对象流过`MessageChannel`实例
+
+通过消息传递端点连接`MessageChannel`对象，不同`Java`对象处理不同类型消息。`Spring Integration`流中的每个消息传递终端都可能产生一个输出值，然后将其发给下游或者`null`来终止处理
+
+`inbound gateway`接收来自外部系统的传入请求，作为`Message<T>`处理并发送回复。`outboud gateway`采用`Message<T>`将其发送到外部系统，并等待来自该系统的回复。
+
+`inbound adapter`是从外部接收消息并将它们变成`Spring Message<T>`的组件，`outbound adapter`接收`Spring Message<T>`并将其转换为下游系统期望的消息传递出去。
+
+`inbond adapter`有两种`polling adapter`和`event-driven adapter`
+
+`dependency injection`使组件代码不用关心资源的初始化和获取，其可以自由地专注于编写这些依赖关系的代码。
+
 
