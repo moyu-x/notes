@@ -262,4 +262,30 @@ class MongoListenserConfig extends AbstarctMongoEventListenser<BaseEntity> {
 
 `dependency injection`使组件代码不用关心资源的初始化和获取，其可以自由地专注于编写这些依赖关系的代码。
 
+## 第11章
+
+### Sping batch
+
+批处理支持名为窗口的逻辑——一个上限和一个下限，用来分隔一组数据。 
+
+块是一匹数据的高效划分
+
+`Spring batch`的核型是`job`概念，而`job`又可能有多个步骤，其是有状态的，它为数据库中运行的所有作业保留元数据表，支持两种机制来并行写入数据：远程分区和远程分块
+
+使用`@StepScope`注释的`bean`不是单例
+
+`Spring cloud Task`是一个抽象，用于管理进程从运行到终止的整个生命周期。
+
+分区的`Step`在`leader`节点上不做任何工作，相反，它充当一种代理节点，将工作分派给`worker`节点
+
+当应用程序启动时，`Spring boot`运行所有的`CommandLineRunner`实例
+
+`task`可以运行并具有预期的最终状态。任务是任何短暂进程或工作负载的理想抽象
+
+### Workflow
+
+`workflow`是通过自治代理系统明确建模工作的实践。`workflow`系统定义了一个状态机，并构建了一个状态机向目标建模。
+
+工作流简化了建模流程，从设计的角度来看，工作流系统有助于保持你的服务和实体的无状态，并且不会出现无关的流程状态。
+
 
