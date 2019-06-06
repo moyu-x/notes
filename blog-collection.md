@@ -10,6 +10,12 @@ sidebar: auto
 1. [Dealing With Java's LocalDateTime in JPA](https://dzone.com/articles/dealing-with-javas-localdatetime-in-jpa)
 2. [Microservices with Spring Boot and Spring Cloud. From config server to OAuth2 server (without inMemory things)](https://itnext.io/microservices-with-spring-boot-and-spring-cloud-16d2c056ba12)
 3. [Axon 入门系列](http://edisonxu.com/categories/Java/%E6%A1%86%E6%9E%B6/CQRS/Axon/)
+4. [何时使用Entity或DTO](https://juejin.im/post/5cf5ac5c6fb9a07ee5660a10)
+
+## Reactive
+
+1. [Transactions with Springreactive-transactions-with-spring](https://spring.io/blog/2019/05/16/reactive-transactions-with-spring)
+2. [Reactive Relational Database Transactions](https://paluch.biz/blog/179-reactive-relational-database-transactions.html "Reactive Relational Database Transactions")
 
 ## Linux
 
@@ -62,3 +68,8 @@ sidebar: auto
 10. [领域驱动设计在互联网业务开发中的实践](https://tech.meituan.com/2017/12/22/ddd-in-practice.html)
 
 11. [Vuex框架原理与源码分析](https://tech.meituan.com/2017/04/27/vuex-code-analysis.html)
+
+## 数据库
+
+1. [MySQL优化看这一篇就够了](http://www.zhenganwen.top/posts/62645e84/)
+2. [MySQL 高级](https://juejin.im/post/5cf3f8b6f265da1bc94ed736)
