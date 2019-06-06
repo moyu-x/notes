@@ -287,5 +287,3 @@ class MongoListenserConfig extends AbstarctMongoEventListenser<BaseEntity> {
 `workflow`是通过自治代理系统明确建模工作的实践。`workflow`系统定义了一个状态机，并构建了一个状态机向目标建模。
 
 工作流简化了建模流程，从设计的角度来看，工作流系统有助于保持你的服务和实体的无状态，并且不会出现无关的流程状态。
-
-

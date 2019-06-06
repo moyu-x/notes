@@ -4,6 +4,7 @@ title: 日志
 footer: MIT Licensed | Copyright © 2018-present idwangmo
 sidebar: auto
 prev: false
+
 next: false
 ---
 
@@ -22,6 +23,7 @@ next: false
 1. [Cloud Native Java](/java/cloud_native_java.md)
 2. [Spring Cloud 微服务实战](/java/spring-cloud-docker.md)
 3. [Java8 实战](/java/java8-in-action.md)
+4. [码出高效](/java/alibaba-java-guide.md)
 
 ## Go
 

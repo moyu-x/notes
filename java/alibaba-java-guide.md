@@ -1,5 +1,6 @@
 ---
 title: 码出高效
+sidebar: auto
 ---
 
 ## Chapter 1 计算机基础
@@ -186,7 +187,7 @@ title: 码出高效
 
 一个`refvar`至多存储一个`refobj`的首地址，一个`refobj`可以被多个`refvar`存储下它的首地址，即一个堆内对象可以被多个`refvar`引用指向
 
-![对象头的内部结构](imgs/cloud_native_java/object-header.png)
+![对象头的内部结构](./imgs/cloud_native_java/object-header.png)
 
 对于在-128到127直接的`Integer`对象由`IntegerCache.cache`产生，会复用已有的对象，这个区间可以直接使用`==`进行判断，但是这个区间外的所有数据都会在堆上产生，并不会复用已有对象，所以包装类型都使用`equals()`进行比较
 
@@ -199,5 +200,3 @@ title: 码出高效
 3. 所有的局部变量推荐使用基本数据类型
 
 `StringBuilder`是非线程安全的，线程安全的对象先产生是因为计算机的发展总是从单线程到多线程，从单机到分布式
-
-
