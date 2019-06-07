@@ -23,5 +23,13 @@ module.exports = {
     },
     markdown: {
       lineNumbers: true
-    }
+    },
+    plugins: [
+      ['mathjax', {
+        target: 'svg',
+        macros: {
+          '*': '\\times',
+        },
+      }],
+    ]
   }
