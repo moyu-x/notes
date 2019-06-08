@@ -50,3 +50,4 @@ next: false
 5. [Go 使用问题汇总](/tips/go-tips.md)
 6. [Spring boot 使用问题汇总](/tips/spring-boot-tips.md)
 7. [Kubernetes 的问题汇总](/tips/k8s-tips.md)
+8. [Java 问题汇总](/tips/java-tips.md)
