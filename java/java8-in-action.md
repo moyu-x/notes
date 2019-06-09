@@ -235,7 +235,7 @@ Collector接口的声明：
 3. 对结果容器应用最终转换： finisher 方法
 4. 合并两个结果容器： combiner 方法
 5. characteristics 方法
-
+   
    characteristics 会返回一个不可变的 Characteristics 集合，它定义了收集器的行为——尤其是关于流是否可以并行归约，以及可以使用哪些优化的提示。Characteristics 是一个包含三个项目的枚举。
 * UNORDERED ——归约结果不受流中项目的遍历和累积顺序的影响。
 * CONCURRENT —— accumulator 函数可以从多个线程同时调用，且该收集器可以并行归约流。如果收集器没有标为 UNORDERED ，那它仅在用于无序数据源时才可以并行归约。

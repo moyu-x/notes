@@ -235,6 +235,8 @@ sidebar: auto
 
 ## Chapter 4 走进 JVM
 
+### 字节码
+
 字节码主要指令如下：
 
 1. 加载或存储指令
@@ -276,3 +278,85 @@ sidebar: auto
 7. 同步指令
 
 ![源码转换为字节码过程](./imgs/alibaba-java-guide/src-to-class-process.png)
+
+执行有三种模式：
+
+1. 解释执行
+
+2. `JIT`编译执行
+
+3. `JIT`编译与混合执行
+
+![即时编译流程](./imgs/alibaba-java-guide/jit-process.png)
+
+机器在热机状态可以承受的负载要大于冷机状态，如果以热机状态是的浏览进行切换，可能使处于冷机状态的服务器因无法承载流量而假死
+
+### 类加载过程
+
+主要流程：
+
+1. `LOAD`阶段读取类文件产生的二进制流，并转换为特定的数据结构
+
+2. `Link`阶段包括验证、准备、解析三个步骤
+
+3. `Init`阶段执行类构造器`<clinit>`方法，如果赋值运算是通过其他类的静态方法来完成的，如果马上解析另外一个类，在虚拟机栈种执行完毕后柘荣刚返回值进行赋值
+
+类加载过程是一个讲`.class`字节码文件实例化程`Class`对象并进行相关初始化的过程
+
+`new`是强类型校验，可以调用任何构造方法，在使用`new`操作的时候，这个类可以没有被加载过。而`Class`类下的`newInstance`是弱类型，只能调用无参构造方法，如果没有默认的构造方法，就抛出`InstantiationExeception`异常，如果此构造器没有访问权限，就抛出`IllegalAccessExeception`
+
+通过`setAccessible(true)`操作，可以是用大写`Class`类的`set`方法修改其值
+
+`AppClassLoader`的`Parent`为`Bootstrap`
+
+![双亲委派模型](./imgs/alibaba-java-guide/parents-delegate.png)
+
+低层次的当前类加载器，不能覆盖更高层次类加载的类
+
+自定义类加载器的情况：
+
+1. 隔离加载类
+
+2. 修改类加载方式
+
+3. 扩展加载源
+
+4. 防止源码泄露
+
+实现自定义类加载器的步骤：继承`ClassLoader`，重写`findClass()`方法，调用
+`defineClass()`方法。
+
+### 内存布局
+
+![经典 JVM 内存分布](./imgs/alibaba-java-guide/jvm-memery-map.png)
+
+![GC 流程](./imgs/alibaba-java-guide/gc-flow.png)
+
+栈帧包括局部变量表、操作栈、动态连接、方法返回地址等
+
+从字节码角度看待对象的创建过程：
+
+1. `NEW`：如果找不到`Class`对象，则进行类加载
+
+2. `DUP`：在栈顶赋值该引用变量，这时的栈顶有两个指向堆内实例对象的引用变量
+
+3. `INVOKESPECIAL`：调用对象实例方法，通过栈顶的引用变量调用`<init>`方法
+
+从执行步骤的角度：
+
+1. 确认类源信息是否存在
+
+2. 分配对象内存
+
+3. 设定默认值
+
+4. 设定对象头
+
+5. 执行`init`方法
+
+### 垃圾回收
+
+如果一个对象与`GCRoots`之间没有直接或间接的引用关系，比如某个失
+去任何引用的对象，或者两个互相环岛状循环引用的对象等，判决这些对象“死缓是可以被回收的。
+
+![Servial 回收流程](./imgs/alibaba-java-guide/servial-gc.png)
