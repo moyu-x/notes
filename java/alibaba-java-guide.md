@@ -361,7 +361,7 @@ sidebar: auto
 
 ![Servial 回收流程](./imgs/alibaba-java-guide/servial-gc.png)
 
-## Chapter 5 异常与日志
+## Chapter 5 异常与日志
 
 异常捕获是针对飞稳定代码的，捕获时要区分异常类型并做相应处理。
 
@@ -393,4 +393,50 @@ sidebar: auto
 
 ![日志结构框架](./imgs/alibaba-java-guide/logging-framework.png)
 
+## Chapter 6 数据结构与集合
 
+### 集合
+
+![Java 集合框架图](./imgs/alibaba-java-guide/java-collections.png)
+
+`ArrayList`是容量可变的非线程安全集合
+
+`HashMap`从源码分析是使用`HashMap`来实现的
+
+在`Java`体系种，数组可以存储统一类型的对象，一旦分配内存后则无法扩容
+
+在数组转集合的过程中，注意是否使用了视图方式直接返回数组中的数据，例如当使用`Arrays.asList()`讲数组转换为集合时，不能使用其修改集合相关的方法，其体现的是适配器模式。`asList`的返回对象是一个`Arrays`的内部类，它并没有实现集合个数的相关修改方法
+
+不要使用`toArray()`的无参方法把集合转换成数组，这样会导致泛型丢失。使用集合的`toArry(T[] array)`方法，转换为数组时，注意需要传入类型完全一样的数组，并且它的容量大小为`list.size()`
+
+### 集合泛型
+
+`List<?>`是一个泛型，在没有赋值之前，表示它可以接受任何类型的集合赋值，赋值之后就不能随便往里添加元素了
+
+`<? extends T>`是`Get First`，适用于消费集合元素为主的场景，可以赋值给任何`T`及`T`子类的集合，上界为`T`，取出来的类型带有泛型限制，向上强制转型为`T`，`null`可以表示任何类型，所以除了`null`外，任何元素都不能添加进`<? extends T>`
+
+`<? super T>`是`Put First`的，生产集合元素为主的场景，可以赋值给任何`T`及`T`父类的集合，下界为`T`
+
+`extents`的场景是`put`受限，而`super`场景是`get`受限 
+
+### 元素比较
+
+`Comparable`是自己和自己比，`Comparator`是第三方比较器，约定小于的情况返回`-1`，等于的情况返回`0`，大于的情况返回`1`
+
+`hashCode`和`equals`的要求如下：
+
+1. 如果两个对象的`equals`的结果是相等的，则两个对象的`hashCode`的返回结果必须是相同的
+
+2. 任何时候覆写`equals`都必须同时覆写`hashCode`
+
+`Objects.hashCode()`的实现是默认为每一个对象生成`int`数值，其本身是根据对象的地址进行相关计算得到的`int`类型数据
+
+`subList`方法返回的是内部类`SubList`的对象，`SubList`类是`ArrayList`的内部类
+
+`java.util`下的所以集合类都是`fail-fast`机制，而`concurrent`包种的集合类都是`fail-safe`
+
+使用`CopyOnWriteArrayList`的时候应该注意：
+
+1. 尽量设置合理的容量初始值
+
+2. 使用批量添加或删除方法
