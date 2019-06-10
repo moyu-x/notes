@@ -393,7 +393,7 @@ sidebar: auto
 
 ![日志结构框架](./imgs/alibaba-java-guide/logging-framework.png)
 
-## Chapter 6 数据结构与集合
+## Chapter 6 数据结构与集合
 
 ### 集合
 
@@ -417,7 +417,7 @@ sidebar: auto
 
 `<? super T>`是`Put First`的，生产集合元素为主的场景，可以赋值给任何`T`及`T`父类的集合，下界为`T`
 
-`extents`的场景是`put`受限，而`super`场景是`get`受限 
+`extents`的场景是`put`受限，而`super`场景是`get`受限
 
 ### 元素比较
 
@@ -440,3 +440,122 @@ sidebar: auto
 1. 尽量设置合理的容量初始值
 
 2. 使用批量添加或删除方法
+   
+   T
+
+## Chapter 7 并发与多线程
+
+在并发环境下，由于程序的封闭性被打破，出现以下特点：
+
+1. 并发程序之间有相互制约的关系
+2. 并发程序的执行过程是断断续续的
+3. 当并发数设置合理并且`CPU`拥有足够处理能力时，并发会提高程序的运行效率
+
+### 线程安全
+
+线程可以拥有自己的操作栈、程序计数器、局部变量表等资源，它于同一进程内的其他线程共享该进程的所有资源
+
+![线程状态图](./imgs/alibaba-java-guide/thread-status.png)
+
+创建线程的三种方式：
+
+1. 继承`Thread`类
+2. 实现`Runnable`接口
+3. 实现`Callable`接口
+
+继承`Thread`的类往往不符合里氏代换原则
+
+保证高并发场景下线程安全可以从四个方面考虑:
+
+1. 数据单线程内可见
+2. 只读对象
+3. 线程安全类
+4. 同步与锁机制
+
+线程安全理念的核心就是“要么只读，要么加锁”
+
+并发包的主要组成：
+
+1. 线程同步类
+2. 并发集合类
+3. 线程管理类
+4. 锁相关操作
+
+### 锁
+
+锁主要提供了两种特性：
+
+* 互斥性
+* 分段性
+
+![Lock 的继承关系](./imgs/alibaba-java-guide/lock-extends.png)
+
+在`AQS`中定义了一个`volatile int state`变量作为共享资源，如果线程获取资源失败，则进入同步`FIFO`队列中等待；如果成功获取资源就执行临界代码。执行完释放资源时，会通知同步队列中的等待线程来获取资源出队并执行。其是抽象类，内置自旋锁实现同步队列，封装入队和出队操作，提供独占、共享、中断等特性方法。
+
+`CountDownLatch`是一次性的，用完后如果想再使用就只能重新创建一个；循环使用则使用基于`ReentrantLook`实现的`CyclicBarrier`
+
+`synchronized`的原则是锁的范围要小，时间尽可能的短，即能锁对象就不要锁类，能锁代码块就不要锁方法
+
+`JVM`底层是通过监视锁来实现`synchronzied`的，`JVM`会根据`synchronized`的当前环境，找到对应对象的`monitor`，再根据`monitor`的状态进行加、解锁的判断。
+
+### 线程同步
+
+对`volatile`变量的操作都并非都具有原子性
+
+`LongAdder`类比`AtomicLong`性能更好，因为有效的减少了乐观锁的重试次数
+
+一写多读的并发场景使用`volatile`修饰比变量最为合适
+
+无论是从性能还是从安全上考虑，尽量使用并发包中提供的信号同步类，避免使用对象的`wait()`和`notify()`
+
+### 线程池
+
+友好拒绝的策略：
+
+1. 保存到数据库进行削峰填谷，在空闲时再取出来执行
+
+2. 转向某个提示页面
+
+3. 打印日志
+
+![线程池相关类图](./imgs/alibaba-java-guide/thread-status.png)
+
+`Executors`核心方法有五个：
+
+* `Executors.newWorkStealingPool`创建持有阻隔线程池支持给定的并行度，并通过使用多个队列减少竞争，此构造方法中把`CPU`数量设置为默认的并行度
+
+* `Executors.newScheduledThreadPool`线程数最大为`Integer.MAX_VALUE`，存在`OOM`风险
+
+* `Executors.newSingleThreadExecutor`创建一个单线程的线程池，相当于单线程串行执行所有任务，保证按任务的提交顺序依次执行
+
+* `Executors.newFixedThreadPool`输入的参数即是固定的线程数，既是核型线程数也是最大线程数，不存在空闲线程，所有`keepAliveTime`等于0
+
+`ThreadPoolExecutor`提供四个公开的内部静态类：
+
+* `AbortPolicy`丢弃任务并抛出`RejectedExecutionException`异常
+
+* `DiscardPolicy`丢弃任务，但是不抛出异常，不推荐使用
+
+* `DiscardOldestPolicy`抛弃队列中等待最久的任务，然后把当前任务加入队列中
+
+* `CallerRunsPolicy`调用任务的`run()`方法绕过线程池直接执行
+
+线程池使用的注意事项：
+
+1. 合理设置各类参数，应根据实际业务场景来设置合理的工作线程数
+
+2. 线程资源必须通过线程池提供，不允许在应用中自行显示创建线程
+
+3. 创建线程或线程池时请制定有意义的线程名称，方便出错回溯
+
+线程池不允许使用`Executors`，而是通过`ThreadPoolExecutor`的方式创建
+
+### ThreadLocal
+
+![对象引用类型](./imgs/alibaba-java-guide/object-header.png)
+
+`ThreadLocal`的副作用：
+
+1. 脏数据
+
+2. 内存泄漏
