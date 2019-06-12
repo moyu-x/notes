@@ -11,6 +11,7 @@ sidebar: auto
 2. [Microservices with Spring Boot and Spring Cloud. From config server to OAuth2 server (without inMemory things)](https://itnext.io/microservices-with-spring-boot-and-spring-cloud-16d2c056ba12)
 3. [Axon 入门系列](http://edisonxu.com/categories/Java/%E6%A1%86%E6%9E%B6/CQRS/Axon/)
 4. [何时使用Entity或DTO](https://juejin.im/post/5cf5ac5c6fb9a07ee5660a10)
+5. [Apache RocketMQ: How We Lowered Latency](https://dzone.com/articles/apache-rocketmq-how-did-we-lowered-latency)
 
 ## Reactive
 
