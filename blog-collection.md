@@ -12,6 +12,9 @@ sidebar: auto
 3. [Axon 入门系列](http://edisonxu.com/categories/Java/%E6%A1%86%E6%9E%B6/CQRS/Axon/)
 4. [何时使用Entity或DTO](https://juejin.im/post/5cf5ac5c6fb9a07ee5660a10)
 5. [Apache RocketMQ: How We Lowered Latency](https://dzone.com/articles/apache-rocketmq-how-did-we-lowered-latency)
+6. [Excursions into Deduplication](https://www.javaspecialists.eu/archive/Issue270.html)
+7. [Tuning Spring Petclinic JPA and Hibernate configuration with Hypersistence Optimizer](https://vladmihalcea.com/spring-petclinic-hypersistence-optimizer/)
+8. [Immutable Collections In Java – Not Now, Not Ever](https://blog.codefx.org/java/immutable-collections-in-java/)
 
 ## Reactive
 
