@@ -12,25 +12,27 @@ next: false
 
 1. [Blog 收集](/blog-collection.md)
 
-## Python
+## 笔记
+
+### Python
 
 1. [Python Web 开发实战](/python/python_web.md)
 2. [Flask Web 编程开发](/python/flask-web.md)
 3. [Python 编程从入门到实战](/python/python-programming-getting-started.md)
 
-## Java
+### Java
 
 1. [Cloud Native Java](/java/cloud_native_java.md)
 2. [Spring Cloud 微服务实战](/java/spring-cloud-docker.md)
 3. [Java8 实战](/java/java8-in-action.md)
 4. [码出高效](/java/alibaba-java-guide.md)
 
-## Go
+### Go
 
 1. [Go 语言实战](/go/go_in_action.md)
 2. [Build Web Application with Golang](/go/build-web-application-with-golang.md)
 
-## 软件工程
+### 软件工程
 
 1. [硝烟中的 Scrum 和 xp](/software/scrum-vs-xp.md)
 
