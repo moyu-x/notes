@@ -4,7 +4,6 @@ title: 日志
 footer: MIT Licensed | Copyright © 2018-present idwangmo
 sidebar: auto
 prev: false
-
 next: false
 ---
 
@@ -41,6 +40,10 @@ next: false
 1. [2018-09-11（英语，微服务，git 提交）](/daily/20180911.md)
 2. [2018-09-16(c 编译器）](/daily/20180916.md)
 3. [Git 提交密码管理](/daily/20190126.md)
+
+## 其他
+
+1. [CollShell](/other/coolshell.md)
 
 ## tips
 
