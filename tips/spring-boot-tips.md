@@ -53,7 +53,7 @@ spring:
 
 ## lombok 在 IDE 提示报错到情况
 
-当出现lombok报错的时候，在 peferences -> build -> annotation processors 中设置
+当出现 lombok 报错的时候，在 peferences -> build -> annotation processors 中设置
 
 ## feign 的 name 同名提示报错
 
@@ -62,7 +62,7 @@ spring:
 ``` txt
 Description:
 
-The bean Bean 的名称, defined in null, could not be registered. A bean with that name has already been defined in null and overriding is disabled.
+The bean Bean 的名称，defined in null, could not be registered. A bean with that name has already been defined in null and overriding is disabled.
 
 Action:
 
@@ -83,7 +83,7 @@ Consider renaming one of the beans or enabling overriding by setting spring.main
 
 ## Java 和 Kotlin 类型不兼容
 
-在使用spring data redis允许lua脚本的时候会出现返回值是Int，然后在kotlin中出现了类型不兼容的情况，这是因为kotlin中的Long指向的是Java中的long，并且在接口上做了不可以为空判定，大部分情况下是可以兼容的，但是spring框架类中使用了反射强制获取了Java中的Long类型，也就是在获取包装类型的情况下，只能强制指定返回的类型为包装类习惯，这是因为在不指定的话默认的类型转换是不可空的，如下
+在使用 spring data redis 允许 lua 脚本的时候会出现返回值是 Int，然后在 kotlin 中出现了类型不兼容的情况，这是因为 kotlin 中的 Long 指向的是 Java 中的 long，并且在接口上做了不可以为空判定，大部分情况下是可以兼容的，但是 spring 框架类中使用了反射强制获取了 Java 中的 Long 类型，也就是在获取包装类型的情况下，只能强制指定返回的类型为包装类习惯，这是因为在不指定的话默认的类型转换是不可空的，如下
 
 ``` kotlin
 java.lang.Long
@@ -92,12 +92,12 @@ java.lang.Long::class.java
 
 ## 简单的分布式锁的实现
 
-实现分布式锁最简单的方式就是在reids中执行lua脚本，因为lua是单进程执行的，在不是集群部署的情况下实现一个分布式锁或者进行分布式限流相对来说是比较简单的。当在系统部署的时候使用了集群的方式，应该考虑的是数据在每个slot中同步的问题，一个简单的解决办法是在少数节点只进行写入操作，在多数节点进行写操作。在spring中，使用spring data redis对大部分的redis操作进行了封装，并且可以在使用集群的情况下设置写入节点和读取节点，然后在其中对数据进行处理，所有的后续操作都要等到redis中的数据真实有效变更后才能进行后续操作
+实现分布式锁最简单的方式就是在 reids 中执行 lua 脚本，因为 lua 是单进程执行的，在不是集群部署的情况下实现一个分布式锁或者进行分布式限流相对来说是比较简单的。当在系统部署的时候使用了集群的方式，应该考虑的是数据在每个 slot 中同步的问题，一个简单的解决办法是在少数节点只进行写入操作，在多数节点进行写操作。在 spring 中，使用 spring data redis 对大部分的 redis 操作进行了封装，并且可以在使用集群的情况下设置写入节点和读取节点，然后在其中对数据进行处理，所有的后续操作都要等到 redis 中的数据真实有效变更后才能进行后续操作
 
 ## Git 重置所有提交记录
 
-基本思想是新建一个分支,然后把本地的master分支删了,然后重命名当前分支,具体操作如
-下:
+基本思想是新建一个分支，然后把本地的 master 分支删了，然后重命名当前分支，具体操作如
+下：
 
 ``` bash
 # 新建分支
@@ -107,7 +107,7 @@ git checkout --orphan latest_branch
 git add -A
 git commit -am "commit message"
 
-# 删除master分支
+# 删除 master 分支
 git branch -D master
 
 # 重命名当前分支
@@ -119,11 +119,26 @@ git push -f origin master
 
 ## Consul 和 Kubernetes 同时使用时候冲突的解决
 
-`Spring boot`的一个功能就是提供了大量的自动配置，当多种同类型的自动配置进行加载的时候，就会出现冲突，继而导致应用不能启动，这个时候就需要在系统中根据不同的环境加载不同的配置文件，`Spring boot`提供了不加载某些自动配置的配置项，下面以不加载`Consul`，而使用`Kubernetes`为例:
+`Spring boot`的一个功能就是提供了大量的自动配置，当多种同类型的自动配置进行加载的时候，就会出现冲突，继而导致应用不能启动，这个时候就需要在系统中根据不同的环境加载不同的配置文件，`Spring boot`提供了不加载某些自动配置的配置项，下面以不加载`Consul`，而使用`Kubernetes`为例：
 
 ``` yml
 spring:
     autoconfigure:
         exclude:
             - org.springframework.cloud.consul.serviceregistry.ConsulAutoServiceRegistrationAutoConfiguration
+```
+
+## Spring boot 2 Actuator 显示所有 bean
+
+在配置文件中加如如下配置：
+
+``` yml
+management:
+  endpoint:
+    beans:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
 ```

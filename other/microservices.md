@@ -16,7 +16,7 @@ titile: 微服务
 
 - 无集中式管理
 
-本质上不能脱离SOA
+本质上不能脱离 SOA
 
 ### 微服务的利弊
 
@@ -44,7 +44,7 @@ titile: 微服务
 
 单块优先，后期转换到微服务上，前期不能很好的划分服务之间的边界
 
-![end-to-end-ownership](imgs\microservices\end-to-end-ownership.png)
+![end-to-end-ownership](imgs/microservices/end-to-end-ownership.png)
 
 Build it, run it.
 
@@ -53,7 +53,7 @@ Build it, run it.
 #### 服务发现模式
 
 * 独立`Load Balancer`
-* 进程`内Load Balancer`
+* 进程`内 Load Balancer`
 * 主机独立进程`Load Balancer`
 
 ### 网关

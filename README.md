@@ -7,10 +7,6 @@ prev: false
 next: false
 ---
 
-## 博客收集
-
-1. [Blog 收集](/blog-collection.md)
-
 ## 笔记
 
 ### Python
@@ -44,6 +40,8 @@ next: false
 ## 其他
 
 1. [CollShell](/other/coolshell.md)
+2. [Blog 收集](/blog-collection.md)
+3. [视频收集](./other/favorite-videos.md)
 
 ## tips
 
