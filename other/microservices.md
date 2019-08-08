@@ -1,6 +1,6 @@
-```yaml
+---
 titile: 微服务
-```
+---
 
 ## 微服务架构
 
@@ -53,7 +53,7 @@ Build it, run it.
 #### 服务发现模式
 
 * 独立`Load Balancer`
-* 进程`内 Load Balancer`
+* 进程内`Load Balancer`
 * 主机独立进程`Load Balancer`
 
 ### 网关
@@ -75,3 +75,32 @@ Build it, run it.
 
 ![链路监控的选型](imgs/microservices/trace-choose.png)
 
+## OAuth2 参考书目
+
+* OAuth2 in Action
+* OAuth2 2.0 Cookbook
+
+### 应用场景
+
+1. 开发系统间的授权
+2. 现代微服务的安全
+3. 企业内部应用认证授权
+
+OAuth2 不是一个认证协议，其不告诉任何用户信息。也没有定义授权处理机制，也没有定义 Token 格式和加密方法。
+
+OAuth2 仅仅是一个授权框架，仅用于授权代理
+
+### 授权类型选择
+
+![OAuth2 授权类型选型](imgs/microservices/oauth2-choose.png)
+
+### 访问令牌的类型
+
+1. By reference token （透明令牌）
+2. By value token （自包含令牌）
+
+JWT 是自解释，自校验的
+
+### OpenID
+
+(Identity,Authentication)+OAuth2.0 = OpenID Connect
