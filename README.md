@@ -30,6 +30,7 @@ next: false
 ### 软件工程
 
 1. [硝烟中的 Scrum 和 xp](/software/scrum-vs-xp.md)
+2. [微服务设计](./other/BuildingMicroservices.md)
 
 ## 日常
 
