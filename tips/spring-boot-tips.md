@@ -59,7 +59,7 @@ spring:
 
 当在`Spring boot 2.0`使用`feign`的时候，使用`Bean`提示如下错误：
 
-``` txt
+```
 Description:
 
 The bean Bean 的名称，defined in null, could not be registered. A bean with that name has already been defined in null and overriding is disabled.
