@@ -31,6 +31,7 @@ next: false
 
 1. [硝烟中的 Scrum 和 xp](/software/scrum-vs-xp.md)
 2. [微服务设计](./other/BuildingMicroservices.md)
+3. [响应式编程](./other/reactive.md)
 
 ## 日常
 
