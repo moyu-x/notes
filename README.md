@@ -22,6 +22,7 @@ next: false
 3. [Java8 实战](/java/java8-in-action.md)
 4. [码出高效](/java/alibaba-java-guide.md)
 5. [轻量级微服务设计](./java/lightweight-mircoservice-architecture.md)
+6. [Spring Cloud 微服务实战](./java/spring-cloud-mircoservice.md)
 
 ### Go
 
