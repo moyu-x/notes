@@ -18,13 +18,13 @@ set bell-style none
 先安装`jpegiptim`工具：
 
 ``` bash
-sudo pacman -S jpegiptim
+sudo pacman -S jpegoptim
 ```
 
 具体的使用方式如下：
 
 ``` bash
-jpegiptim example.jpeg
+jpegoptim example.jpeg
 
 # 需要压缩的情况
 jpegiptim --size=100k example.jpeg
@@ -36,21 +36,4 @@ jpegiptim --size=100k example.jpeg
 
 ```bash
 set bell-style none
-```
-
-## 四、图片压缩
-
-先安装`jpegiptim`工具：
-
-``` bash
-sudo pacman -S jpegiptim
-```
-
-具体的使用方式如下：
-
-``` bash
-jpegiptim example.jpeg
-
-# 需要压缩的情况
-jpegiptim --size=100k example.jpeg
 ```
