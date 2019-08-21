@@ -12,5 +12,5 @@ new Streams API behaves similarly to Java’s existing Collections API: both pro
 
 Parallelism in Java and no shared mutable state：
 
-* the library handles partitioning—breaking down a big stream into several smaller streams to be processed in parallel for you
-* his parallelism almost for free from streams, works only if the methods passed to library methods like filter don’t interact. But it turns out that this restriction feels natural to a coder 
+-   the library handles partitioning—breaking down a big stream into several smaller streams to be processed in parallel for you
+-   his parallelism almost for free from streams, works only if the methods passed to library methods like filter don’t interact. But it turns out that this restriction feels natural to a coder

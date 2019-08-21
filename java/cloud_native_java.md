@@ -103,7 +103,7 @@ Spring 允许映射所有的配置到 POJO 类似的配置当中
 
 `@SpringBootTest`注解将指明此类是一个 Spring Boot 的测试类，并且提供了扫描`ContextConfiguration`的支持，并且告诉如何加载 ContextConfiguration。当没有自定义的配置类被扫描到的时候，将会加载在 Spring 框架包中的配置文件。
 
-在集成测试执行的过程中任何测试都需要访问 Spring context，而单元测试的不需要Spring context。
+在集成测试执行的过程中任何测试都需要访问 Spring context，而单元测试的不需要 Spring context。
 
 在 Spring boot 程序中，我们需要部署`.jar`文件，所以`@SpringBooTest`支持`webEnvironment`
 属性去描述 Spring boot 在程序运行的时候应该怎么配置嵌入式的容器
@@ -130,8 +130,8 @@ Servlet API 要求对象必须重新实现 Java 的序列化以此来重写 HTTP
 
 0. The swamp of Pox
 1. Resource
-2. HTTP verbs
-3. Hypermedia controls
+1. HTTP verbs
+1. Hypermedia controls
 
 基本上，使用例如 Spring MVC 或者 Flask 之类的框架的时候，已经处于第二个级别了，即便是错误的使用了这几个框架，那么最终的`API`仍然可能是符合二级的。
 
@@ -141,7 +141,7 @@ Servlet API 要求对象必须重新实现 Java 的序列化以此来重写 HTTP
 
 servlet 容器维护着一个 HTTP 请求的线程池
 
-`CustomerRestController`中处理器方法可以对现有的记录进行操作，如果没有找到改记录，则抛出异常。 
+`CustomerRestController`中处理器方法可以对现有的记录进行操作，如果没有找到改记录，则抛出异常。
 
 `Spring MVC`支持在处理器方法上使用`@ExceptionHandler`注解，来监听和响应`Spring MVC`控制器中的错误条件。
 
@@ -163,13 +163,13 @@ servlet 容器维护着一个 HTTP 请求的线程池
 
 `Zuul`过滤器默认有四种类型：
 
-- `pre`过滤器在请求路由之前执行
+-   `pre`过滤器在请求路由之前执行
 
-- `routing`过滤器可以处理请求的实际路由
+-   `routing`过滤器可以处理请求的实际路由
 
-- `post`过滤器在请求路由之后执行
+-   `post`过滤器在请求路由之后执行
 
-- 如果在处理请求的过程中发生错误，则会执行`error`过滤器
+-   如果在处理请求的过程中发生错误，则会执行`error`过滤器
 
 限速器的两种算法：
 
@@ -244,11 +244,11 @@ class MongoListenserConfig extends AbstarctMongoEventListenser<BaseEntity> {
 
 事件驱动的含义：
 
-* 事件通知：通过发送事件消息来通知其他系统其系统域的变化。消息的接收者不产生答复。源系统不期望应答，也不需要应答。事件通知是不可变的，这意味着事件消息的内容不应包含事件生成后修改的数据。
+-   事件通知：通过发送事件消息来通知其他系统其系统域的变化。消息的接收者不产生答复。源系统不期望应答，也不需要应答。事件通知是不可变的，这意味着事件消息的内容不应包含事件生成后修改的数据。
 
-* 携事件的状态转移：消息中不包含任何需要求接收方回调系统的数据。各式各样的事件消息中包括接收着处理事情所需的一切内容。
+-   携事件的状态转移：消息中不包含任何需要求接收方回调系统的数据。各式各样的事件消息中包括接收着处理事情所需的一切内容。
 
-* 事件溯源：事件溯源是对存储系统能够导致系统状态随事件变化的领域事件日志的实践。在这种情况下，可以从任何事件点重新播放事件以重建系统状态。
+-   事件溯源：事件溯源是对存储系统能够导致系统状态随事件变化的领域事件日志的实践。在这种情况下，可以从任何事件点重新播放事件以重建系统状态。
 
 `Spring Integration`的核心是`Spring`框架中的`MessageChannel`和`Message<T>`类型。`Message<T>`对象有一个`playload`和一组`header`，用来提供有关消息有效载荷的元数据。`Message<T>`对象流过`MessageChannel`实例
 
@@ -262,11 +262,11 @@ class MongoListenserConfig extends AbstarctMongoEventListenser<BaseEntity> {
 
 `dependency injection`使组件代码不用关心资源的初始化和获取，其可以自由地专注于编写这些依赖关系的代码。
 
-## 第11章
+## 第 11 章
 
 ### Sping batch
 
-批处理支持名为窗口的逻辑——一个上限和一个下限，用来分隔一组数据。 
+批处理支持名为窗口的逻辑——一个上限和一个下限，用来分隔一组数据。
 
 块是一匹数据的高效划分
 
@@ -292,9 +292,9 @@ class MongoListenserConfig extends AbstarctMongoEventListenser<BaseEntity> {
 
 `CAP`原则：
 
-* 一致性: Consistency
-* 数据高科用性: Availability
-* 网路分区的容忍性: Partition
+-   一致性: Consistency
+-   数据高科用性: Availability
+-   网路分区的容忍性: Partition
 
 当调用失败的时候，`Srping Retry`会调用一个使用`@Recovery`的处理方法，恢复方法与可恢复方法相同的相应，默认情况会调用三次，每次都会增加停止的时间。
 
@@ -313,4 +313,3 @@ class MongoListenserConfig extends AbstarctMongoEventListenser<BaseEntity> {
 聚合是一个有状态的组建，其标识符是在处理域事件之后应用突变的结果。
 
 ### Spring Cloud Data Flow
-
