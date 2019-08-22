@@ -84,12 +84,12 @@ Pandas 包含三种数据结构：
 
 使用`fake-useragent`实现随机生成 UA：
 
-``` shell
+```bash
 # 安装，在使用的时候可能需要将提供的 UA 缓存下来
 pip install --user fake-useragent
 ```
 
-``` python
+```python
 # 使用
 from fake_useragent import UserAgent
 
@@ -108,14 +108,12 @@ ua.random
 5. operator 是一个内建的函数式接口
 6. functools 模块中包含了一系列操作其他函数的工具
 7. collections 模块包含了 5 个高性能的数据类型：
-`Conter`、`deque`、`defaultdict`、`OrderedDict`、`namedtuple`
+   `Conter`、`deque`、`defaultdict`、`OrderedDict`、`namedtuple`
 
 数据检查有 EAFP 和 LBYL 两种编程风格：
 
-1. LBYL：Lock Before You Leap，即事先检查，通过使用 if 语句把错误输入转化成合理
-的用法或者返回错误信息
-2. EAFP： Easier to Ask Forgiveness than Permission，即不检查，出了问题由异常处
-理来处理
+1. LBYL：Lock Before You Leap，即事先检查，通过使用 if 语句把错误输入转化成合理的用法或者返回错误信息
+2. EAFP： Easier to Ask Forgiveness than Permission，即不检查，出了问题由异常处理来处理
 
 ## 第十五章
 

@@ -23,6 +23,7 @@ next: false
 4. [码出高效](/java/alibaba-java-guide.md)
 5. [轻量级微服务设计](./java/lightweight-mircoservice-architecture.md)
 6. [Spring Cloud 微服务实战](./java/spring-cloud-mircoservice.md)
+7. [Spring Cloud 与 Docker 微服务架构实战](./java/spring-cloud-docker.md)
 
 ### Go
 
