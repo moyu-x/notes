@@ -11,7 +11,7 @@ install:
     - yarn add vuepress
     - yarn add vuepress-plugin-mathjax
 script:
-    - yarn docs:build
+    - yarn vuepress build
 deploy:
     provider: pages
     skip-cleanup: true
