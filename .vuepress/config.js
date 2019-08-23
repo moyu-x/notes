@@ -33,6 +33,9 @@ module.exports = {
                     "*": "\\times"
                 }
             }
-        ]
+        ],
+        "seo",
+        ["sitemap", { hostname: "https://notes.idwangmo.top" }],
+        "vuepress-plugin-baidu-autopush"
     ]
 };

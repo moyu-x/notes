@@ -47,6 +47,7 @@ next: false
 1. [CollShell](/other/coolshell.md)
 2. [Blog 收集](./other/blog-collection.md)
 3. [视频收集](./other/favorite-videos.md)
+4. [视频笔记](./other./video-notes.md)
 
 ## tips
 
