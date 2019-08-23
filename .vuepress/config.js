@@ -4,6 +4,7 @@ module.exports = {
     serviceWorker: true,
     evergreen: true,
     cache: true,
+    ga: 146378563,
     themeConfig: {
         lastUpdated: "上次修改",
         searchMaxSuggestions: 10,
