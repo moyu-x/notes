@@ -4,7 +4,6 @@ module.exports = {
     serviceWorker: true,
     evergreen: true,
     cache: true,
-    base: "/notes/",
     themeConfig: {
         lastUpdated: "上次修改",
         searchMaxSuggestions: 10,
