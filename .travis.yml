@@ -12,6 +12,7 @@ install:
     - yarn add vuepress-plugin-mathjax
 script:
     - yarn vuepress build
+    - echo 'notes.idwangmo.top' > ./.vuepress/dist/CNAME
 deploy:
     provider: pages
     skip-cleanup: true
