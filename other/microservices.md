@@ -4,17 +4,17 @@ titile: 微服务
 
 ## 微服务架构
 
-- 一组小的服务
+-   一组小的服务
 
-- 独立的进程
+-   独立的进程
 
-- 轻量级通信
+-   轻量级通信
 
-- 基于业务能力
+-   基于业务能力
 
-- 独立部署：每个团队各自独立，各自进行部署
+-   独立部署：每个团队各自独立，各自进行部署
 
-- 无集中式管理
+-   无集中式管理
 
 本质上不能脱离 SOA
 
@@ -22,21 +22,21 @@ titile: 微服务
 
 #### 利
 
-* 强模块化边界
+-   强模块化边界
 
-* 可独立部署
+-   可独立部署
 
-* 技术多样性
+-   技术多样性
 
 #### 弊
 
-* 分布式系统负责性
+-   分布式系统负责性
 
-* 最终那个一致性
+-   最终那个一致性
 
-* 运维负责性
+-   运维负责性
 
-* 测试复杂性
+-   测试复杂性
 
 ### 康威法则
 
@@ -52,24 +52,24 @@ Build it, run it.
 
 #### 服务发现模式
 
-* 独立`Load Balancer`
-* 进程内`Load Balancer`
-* 主机独立进程`Load Balancer`
+-   独立`Load Balancer`
+-   进程内`Load Balancer`
+-   主机独立进程`Load Balancer`
 
 ### 网关
 
 #### 功能
 
-* 反向路由
-* 认证安全
-* 限量熔断
-* 日志监控
+-   反向路由
+-   认证安全
+-   限量熔断
+-   日志监控
 
 #### Zuul 过滤器
 
-* Pre routing filters
-* Routing filters
-* Post routing filters
+-   Pre routing filters
+-   Routing filters
+-   Post routing filters
 
 ![RPC VS REST](imgs/microservices/rpc-vs-rest.png)
 
@@ -77,8 +77,8 @@ Build it, run it.
 
 ## OAuth2 参考书目
 
-* OAuth2 in Action
-* OAuth2 2.0 Cookbook
+-   OAuth2 in Action
+-   OAuth2 2.0 Cookbook
 
 ### 应用场景
 
@@ -109,11 +109,11 @@ JWT 是自解释，自校验的
 
 ### 传统应用配置的问题
 
-* 主要采用本地文件静态配置
-* 配置散乱、格式不标准
-* 易发生事故
-* 配置修改麻烦，周期长
-* 配置信息缺少安全审计和版本控制
+-   主要采用本地文件静态配置
+-   配置散乱、格式不标准
+-   易发生事故
+-   配置修改麻烦，周期长
+-   配置信息缺少安全审计和版本控制
 
 ### 现代配置核心需求
 
@@ -123,4 +123,3 @@ JWT 是自解释，自校验的
 4. 高可用
 5. 实时性
 6. 治理
-
