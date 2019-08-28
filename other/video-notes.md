@@ -17,7 +17,7 @@ problem in lower end of chain have a ripple effect on other service:
 -   overloaded service / slow response time
 -   change of interface
 
-![Evnent-Driven(Async) Mircoservice Approach](./imgs/videonotes/event-driven-mircoservice-approach.png)
+![Evnent-Driven (Async) Mircoservice Approach](./imgs/videonotes/event-driven-mircoservice-approach.png)
 
 ![Streaming Analytics Architecture](./imgs/videonotes/streaming-analytics-architecture.png)
 
