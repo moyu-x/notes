@@ -202,3 +202,49 @@ For `message-driven` RabbitMQ beans, Spring offers `RabbitListener`, the RabbitM
 ![Kafka cluster](./imgs/spring-in-action-5th/kafka-cluster.png)
 
 The `topic` and `payload` are the two most important parameters.
+
+### Spring Integration
+
+`@MessagingGateway` is tells Spring Integration to generate an implementation of this interfaceat runtime—similar to how Spring Data automatically generates implementations ofrepository interfaces.
+
+Three configuration options for declaring integration flows include these:
+
+-   XML configuration
+-   Java configuration
+-   Java configuration with a DSL
+
+The role each of these com-ponents plays in an integration flow:
+
+-   `Channels`—Pass messages from one element to another.
+-   `Filters`—Conditionally allow messages to pass through the flow based on somecriteria.
+-   `Transformers`—Change message values and/or convert message payloads fromone type to another.
+-   `Routers`—Direct messages to one of several channels, typically based on mes-sage headers.
+-   `Splitters`—Split incoming messages into two or more messages, each sent to dif-ferent channels.
+-   `Aggregators`—The opposite of splitters, combining multiple messages coming infrom separate channels into a single message.
+-   `Service activators`—Hand a message off to some Java method for processing, andthen publish the return value on an output channel.
+-   `Channel adapters`—Connect a channel to some external system or transport. Caneither accept input or write to the external system.
+-   `Gateways`—Pass data into an integration flow via an interface.
+
+Spring Integration provides several channel implementations, including these:
+
+-   PublishSubscribeChannel—Messages published into a PublishSubscribe-Channel are passed on to one or more consumers.
+-   QueueChannel—Messages published into a QueueChannel are stored in a queueuntil pulled by a consumer in a first in, first out (FIFO) fashion. If there aremultiple consumers, only one of them receives the message.
+-   PriorityChannel—Like QueueChannel but, rather than FIFO behavior, mes-sages are pulled by consumers based on the message priority header.
+-   RendezvousChannel—Like QueueChannel except that the sender blocks thechannel until a consumer receives the message, effectively synchronizing thesender with the consumer.
+-   DirectChannel—Like PublishSubscribeChannel but sends a message to a sin-gle consumer by invoking the consumer in the same thread as the sender. Thisallows for transactions to span across the channel.
+-   ExecutorChannel—Similar to DirectChannel but the message dispatch occursvia a TaskExecutor, taking place in a separate thread from the sender. Thischannel type doesn’t support transactions that span the channel.
+-   FluxMessageChannel—A Reactive Streams Publisher message channel based onProject Reactor’s Flux. (We’ll talk more about Reactive Streams, Reactor, andFlux in chapter 10.)
+
+Filters can be placed in the midst of an integration pipeline to allow or disallow mes-sages from proceeding to the next step in the flow
+
+Transformers perform some operation on messages, typically resulting in a differentmessage and, possibly, with a different payload type
+
+Routers, based on some routing criteria, allow for branching in an integration flow,directing messages to different channels
+
+in an integration flow it can be useful to split a message into multiple mes-sages to be handled independently.
+
+Service activators receive messages from an input channel and send those messages toan implementation of `MessageHandler`
+
+Gateways are the means by which an application can submit data into an integrationflow and, optionally, receive a response that’s the result of the flow. Implemented bySpring Integration, gateways are realized as interfaces that the application can call tosend messages to the integration flow
+
+Channel adapters represent the entry and exit points of an integration flow. Dataenters an integration flow by way of an inbound channel adapter and exits an integra-tion flow by way of an outbound channel adapter.
