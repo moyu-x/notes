@@ -51,3 +51,11 @@ Host *
 ## 五、 `PTY allocation request failed on channel 0`
 
 `PTY`是一个伪终端，提示为伪终端分配失败，然后提示成功后输出欢迎信息，最后连接被关闭了。这是因为基于`SSH`的`Git`不需要一个 tty，所以被拒绝分配成一个`tty`接入站点，这个时候使用`ssh -T`就行
+
+## 六、在`WSL`中使用`pipenv`
+
+出现在`wsl`中调用`pipenv`出现调用`Windows`中的`Python`的情况时候，需要在使用`pipenv`的时候指定`Python`版本的情况：
+
+```bash
+pipenv --python /usr/bin/python
+```

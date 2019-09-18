@@ -39,3 +39,13 @@ Command Query Responsibility Segregation(CQRS)
 ![Streaming & (Big) Data Analytics Architecture](./imgs/videonotes/streaming-data-analytics-architecture.png)
 
 ![Event Driven Mircoservice Architecture](./imgs/videonotes/event-driven-mircoservice-architecture.png)
+
+## [响应式关系数据库连接](https://www.bilibili.com/video/av59225438)
+
+### Design Principals
+
+-   Utilize Reactive Streams Types and patterns
+-   Be completely non-blocking, all the way to database
+    -   Untilize wire-protocal features where avaliable
+-   Shaink the driver SPI to the minimal set of operations that are implementation speciafic, regardless of usability
+-   Enable multiple 'Humane' APIs to be built on top of the driver

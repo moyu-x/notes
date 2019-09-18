@@ -215,8 +215,8 @@ Three configuration options for declaring integration flows include these:
 
 The role each of these com-ponents plays in an integration flow:
 
--   `Channels`—Pass messages from one element to another.
--   `Filters`—Conditionally allow messages to pass through the flow based on somecriteria.
+-   `Channels` ——Pass messages from one element to another.
+-   `Filters`— Conditionally allow messages to pass through the flow based on somecriteria.
 -   `Transformers`—Change message values and/or convert message payloads fromone type to another.
 -   `Routers`—Direct messages to one of several channels, typically based on mes-sage headers.
 -   `Splitters`—Split incoming messages into two or more messages, each sent to dif-ferent channels.
@@ -248,3 +248,25 @@ Service activators receive messages from an input channel and send those message
 Gateways are the means by which an application can submit data into an integrationflow and, optionally, receive a response that’s the result of the flow. Implemented bySpring Integration, gateways are realized as interfaces that the application can call tosend messages to the integration flow
 
 Channel adapters represent the entry and exit points of an integration flow. Dataenters an integration flow by way of an inbound channel adapter and exits an integra-tion flow by way of an outbound channel adapter.
+
+## Reactive Spring
+
+### Intrdution
+
+As we develop application code, there are two styles of code we can write:
+
+-   `Imperative`
+-   `Reactive`
+
+![Mono and Flux diagram](./imgs/spring-in-action-5th/reactor-flow-diagram.png)
+
+Between Flux and Mono, there are over 500 operations, each of which can be loosely categorized as:
+
+-   Creation operations
+-   Combination operations
+-   Transformation operations
+-   Logic operation
+
+### Flux operation
+
+Whereas `skip()` skipsthe first few items, `take()` only emits the first so many items
