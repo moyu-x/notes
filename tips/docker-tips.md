@@ -1,5 +1,4 @@
 ---
-
 title: Docker 指南
 ---
 
@@ -7,13 +6,13 @@ title: Docker 指南
 
 在安装`Docker`之后，用如下指令将当前用户加入到用户组：
 
-``` bash
+```bash
 sudo usermod -aG docker $USER
 ```
 
 如果提示`/var/run/docker.sock`权限不足，使用如下指令解决：
 
-``` bash
+```bash
 sudo chmod a+rw /var/run/docker.sock
 ```
 
@@ -21,8 +20,8 @@ sudo chmod a+rw /var/run/docker.sock
 
 编辑`/etc/docker/daemon.json`文件后，然后重启`Docker`服务：
 
-``` json
+```json
 {
-  "registry-mirrors": ["https://registry.docker-cn.com"]
+    "registry-mirrors": ["https://registry.docker-cn.com"]
 }
 ```

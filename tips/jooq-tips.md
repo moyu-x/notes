@@ -11,8 +11,8 @@ sidebar: auto
 
 ```yaml
 logging:
-  level:
-    org.jooq.tools.LoggerListener: debug
+    level:
+        org.jooq.tools.LoggerListener: debug
 ```
 
 ## 二、Java8 时间问题

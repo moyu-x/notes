@@ -22,8 +22,8 @@ sidebar: auto
 
 ```yaml
 feign:
-  client:
-    config:
-      default:
-        loggerLevel: full
+    client:
+        config:
+            default:
+                loggerLevel: full
 ```

@@ -33,7 +33,7 @@ kubectl delete deployment tiller-deploy -n kube-system
 kubectl apply -f tiller-deploy.yml
 ```
 
-## Windows安装
+## Windows 安装
 
 在`Windows`上安装`kubernetes`的安装的主体流程和在`Mac`上安装差不多，但是遇到的问题也是措手不及的，首先需要将配置中的`DNS`又原来的`automatic`改成`fix`并建议设置成`114.114.114.114`，然后在系统防火墙中的出入站规则中加入一个出站规则，入站的两个规则已经在安装的时候创建成功了，加入的是`vpnkit`这个程序的规则。
 

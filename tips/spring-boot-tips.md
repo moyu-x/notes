@@ -23,7 +23,7 @@ repositories {
 
 建立一个`feign`的配置文件，并在其中写入如下代码：
 
-``` kotlin
+```kotlin
 @Bean
 fun encoder(): Encoder {
     return FormEncoder()
@@ -44,11 +44,11 @@ fun encoder(): Encoder {
 时候可以将不需要注入到`Bean`加入到`spring.autoconfigure.exclude`中就可以了，例如
 `consul`和`kubernetes`冲突到情况，可以用如下设置：
 
-``` yaml
+```yaml
 spring:
-  autoconfigure:
-    exclude:
-      - org.springframework.cloud.kubernetes.discovery.KubernetesDiscoveryClientAutoConfiguratio
+    autoconfigure:
+        exclude:
+            - org.springframework.cloud.kubernetes.discovery.KubernetesDiscoveryClientAutoConfiguratio
 ```
 
 ## lombok 在 IDE 提示报错到情况
@@ -73,10 +73,10 @@ Consider renaming one of the beans or enabling overriding by setting spring.main
 
 1. 在配置文件中加入运行使用同名`Bean`的配置
 
-    ``` yaml
+    ```yaml
     spring:
-      main:
-        allow-bean-definition-overriding: true
+        main:
+            allow-bean-definition-overriding: true
     ```
 
 2. 将每个`Bean`配置成不同的名称
@@ -85,7 +85,7 @@ Consider renaming one of the beans or enabling overriding by setting spring.main
 
 在使用 spring data redis 允许 lua 脚本的时候会出现返回值是 Int，然后在 kotlin 中出现了类型不兼容的情况，这是因为 kotlin 中的 Long 指向的是 Java 中的 long，并且在接口上做了不可以为空判定，大部分情况下是可以兼容的，但是 spring 框架类中使用了反射强制获取了 Java 中的 Long 类型，也就是在获取包装类型的情况下，只能强制指定返回的类型为包装类习惯，这是因为在不指定的话默认的类型转换是不可空的，如下
 
-``` kotlin
+```kotlin
 java.lang.Long
 java.lang.Long::class.java
 ```
@@ -99,7 +99,7 @@ java.lang.Long::class.java
 基本思想是新建一个分支，然后把本地的 master 分支删了，然后重命名当前分支，具体操作如
 下：
 
-``` bash
+```bash
 # 新建分支
 git checkout --orphan latest_branch
 
@@ -121,7 +121,7 @@ git push -f origin master
 
 `Spring boot`的一个功能就是提供了大量的自动配置，当多种同类型的自动配置进行加载的时候，就会出现冲突，继而导致应用不能启动，这个时候就需要在系统中根据不同的环境加载不同的配置文件，`Spring boot`提供了不加载某些自动配置的配置项，下面以不加载`Consul`，而使用`Kubernetes`为例：
 
-``` yml
+```yml
 spring:
     autoconfigure:
         exclude:
@@ -132,13 +132,13 @@ spring:
 
 在配置文件中加如如下配置：
 
-``` yml
+```yml
 management:
-  endpoint:
-    beans:
-      enabled: true
-  endpoints:
-    web:
-      exposure:
-        include: '*'
+    endpoint:
+        beans:
+            enabled: true
+    endpoints:
+        web:
+            exposure:
+                include: "*"
 ```
