@@ -18,30 +18,19 @@ next: false
 ### Java
 
 1. [Cloud Native Java](/java/cloud_native_java.md)
-2. [Spring Cloud           微服务实战](/java/spring-cloud-docker.md)
-3. [Java8              实战](/java/java8-in-action.md)
+2. [Spring Cloud 微服务实战](/java/spring-cloud-docker.md)
+3. [Java8 dddd 实战](/java/java8-in-action.md)
 4. [码出高效](/java/alibaba-java-guide.md)
 5. [轻量级微服务设计](./java/lightweight-mircoservice-architecture.md)
 6. [Spring Cloud 微服务实战](./java/spring-cloud-mircoservice.md)
-7. [Spring Cloud与 Docker 微服务架构实战](./java/spring-cloud-docker.md)
+7. [Spring Cloud 与 Docker 微服务架构实战](./java/spring-cloud-docker.md)
 8. [Spring in Action 5th](./java/spring-in-action.md)
-
-### Go
-
-1. [Go 语言实战](/go/go_in_action.md)
-2. [Build Web Application with Golang](/go/build-web-application-with-golang.md)
 
 ### 软件工程
 
 1. [硝烟中的 Scrum 和 xp](/software/scrum-vs-xp.md)
 2. [微服务设计](./other/BuildingMicroservices.md)
 3. [响应式编程](./other/reactive.md)
-
-## 数学
-
-### 微积分
-
-1. [微积分的本质](./math/3b1b-calculus.md)
 
 ## 日常
 

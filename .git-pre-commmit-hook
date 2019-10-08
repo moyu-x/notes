@@ -1,5 +1,0 @@
-#!/bin/sh
-
-# format markdown file
-npx prettier --write "./**/*.md"
-
