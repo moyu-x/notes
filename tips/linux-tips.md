@@ -59,3 +59,11 @@ Host *
 ```bash
 pipenv --python /usr/bin/python
 ```
+
+## 七、备份数据库
+
+备份数据库但是不备份非数据相关的库：
+
+```sql
+mysql -h 127.0.0.1 -uciticaozl '-p0000' -e 'show databases;'|grep -E -v "Database|information_schema|mysql|performance_schema" |xargs mysqldump -uciticaozl -h127.0.0.1  '-p00000' --databases > /tmp/source.sql
+```
