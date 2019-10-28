@@ -57,3 +57,4 @@ next: false
 8. [Java 问题汇总](/tips/java-tips.md)
 9. [Docker 使用问题汇总](/tips/docker-tips.md)
 10. [Haskell 使用问题](/tips/haskell-tips.md)
+11. [Mac 使用问题汇总](./tips/mac-tips.md)
