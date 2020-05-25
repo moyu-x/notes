@@ -3,3 +3,6 @@
 
 # vnote的备份文件不提交
 *.vswp
+
+# node 包的缓存
+node_modules/

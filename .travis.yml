@@ -8,11 +8,7 @@ cache:
 before_install:
   - export TZ='Asia/Shanghai' # 设置时区
 install:
-  - yarn add vuepress
-  - yarn add vuepress-plugin-mathjax
-  - yarn add vuepress-plugin-seo
-  - yarn add vuepress-plugin-sitemap
-  - yarn add vuepress-plugin-baidu-autopush
+  - yarn
 script:
   - yarn vuepress build
   - echo 'notes.idwangmo.top' > ./.vuepress/dist/CNAME
