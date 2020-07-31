@@ -52,6 +52,10 @@ next: false
 
 1. [图解 HTTP](./network/图解HTTP.md)
 
+### 算法
+
+1. [Leetcode数组](./leetcode/array.md)
+
 ## 日常
 
 1. [2018-09-11（英语，微服务，git 提交）](/daily/20180911.md)

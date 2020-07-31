@@ -1,14 +1,17 @@
 {
-  "name": "notes",
-  "version": "1.0.0",
-  "description": "idwangmo notes",
-  "repository": "https://github.com/idwangmo/notes",
-  "author": "idwangmo <idwangmo@protonmail.com>",
-  "dependencies": {
-    "vuepress": "^1.5.0",
-    "vuepress-plugin-baidu-autopush": "^1.0.1",
-    "vuepress-plugin-mathjax": "^1.2.8",
-    "vuepress-plugin-seo": "^0.1.3",
-    "vuepress-plugin-sitemap": "^2.3.1"
-  }
+    "name": "notes",
+    "version": "1.0.0",
+    "description": "idwangmo notes",
+    "repository": "https://github.com/idwangmo/notes",
+    "author": "idwangmo <idwangmo@protonmail.com>",
+    "scripts": {
+        "docs:dev": "vuepress dev ."
+    },
+    "dependencies": {
+        "vuepress": "^1.5.2",
+        "vuepress-plugin-baidu-autopush": "^1.0.1",
+        "vuepress-plugin-mathjax": "^1.2.8",
+        "vuepress-plugin-seo": "^0.1.4",
+        "vuepress-plugin-sitemap": "^2.3.1"
+    }
 }
